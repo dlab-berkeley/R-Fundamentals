@@ -1,0 +1,47 @@
+# Workshop Name: Subtitle
+
+The beginning of every workshop notebook should be an H1 (one hashtag) header, with the workshop name, followed by a colon, followed by a subtitle for this notebook.
+
+Provide a brief introduction to what this lesson covers here.
+
+## Workshop Subtopic 1
+
+Provide some more text on what this subtopic covers.
+
+```{r}
+# You might want to have an install cell, if your workshop uses a special package
+# e.g.,
+# install.packages(PACKAGE)
+```
+
+```{r}
+# You might want to have an import cell, so that you can do all imports at the beginning.
+# e.g.,
+# library(PACKAGE)
+```
+
+Be sure to have text between code cells explaining the material, step-by-step.
+
+### Workshop Sub-subtopic 1
+
+Perhaps your subtopic will be divided into finer sub-subtopics. Be sure to use consistent headers for each one, and always have an introductory paragraph explaining what the workshop attendee can expect with this section.
+
+### Challenge #: Challenge Title Here
+
+Every challenge should be an H3 (3 hashtags) header. The challenge should be numbered, and should have a title.
+
+Insert some text here explaining the challenge.
+
+```{r}
+
+# You may have some starter code for the challenge that you can put in its own cell
+# Always have a following cell that says "YOUR CODE HERE", so that attendees know where to put their code
+```
+
+```{r challenge_X}
+# YOUR CODE HERE
+```
+
+# Optional: Closing Section
+
+You may optionally include a summary section at the end of the workshop highlighting what this notebook covered.
