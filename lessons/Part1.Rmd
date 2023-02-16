@@ -1,0 +1,284 @@
+---
+title: "R Fundamentals - Part 1 of 4: Introduction"
+output: html_notebook
+---
+
+## Learning Objectives
+
+Welcome to Part 1 of the R Fundamentals series. Our goals for today's workshop are:
+
+1.  Learn what R is useful (and less useful) for
+
+2.  Become comfortable navigating R-Studio
+
+3.  Practice creating variables and vectors
+
+Throughout this workshop series, we will use the following icons:
+
+🔔 **Question**: A quick question to help you understand what's going on.
+
+🥊 **Challenge**: Interactive exercise. We'll go through these in the workshop!
+
+⚠️ **Warning**: Heads-up about tricky stuff or common mistakes.
+
+💡 **Tip**: How to do something a bit more efficiently or effectively.
+
+🎬 **Demo**: Showing off something more advanced so you know what you can use R for in the future!
+
+## Objective 1: Why use R?
+
+R is a programming language designed for **data analysis**. R is great for data cleaning, data visualization, and statistical analysis, among other things.
+
+R is **not** a general purpose programming language. If you want to do something like build a website or train a machine learning model, languages such as [Python](https://github.com/dlab-berkeley/Python-Fundamentals-Pilot) are better suited for these tasks.
+
+🔔 What tasks would you like to use R for? How do you envision using R in your research or class projects?
+
+## Objective 2: Navigating RStudio
+
+RStudio is the interface in which we use the programming language R. By default, RStudio is organized with four panels:
+
+1.  Script or notebook (upper left): This is where you write, edit and run code. You will spend most of your time in this panel.
+
+2.  Console (lower left): You can use the console to enter R commands on the fly (they will not be saved). Output from code run in the script (above) will be output here.
+
+3.  Global Environment (upper right): Saved variables, functions, and other R objects will appear here.
+
+4.  Misc (lower right): A variety of other tabs which allow you to navigate your file system, view plots, install packages, view help, etc.
+
+### Opening a notebook
+
+In this workshop, we will write and run code from an **R Notebook**. You can open a new notebook by clicking File --\> New File --\> R Notebook.
+
+⚠️ **R notebooks** are a different file type than **R scripts**. Notebooks are great for data analysis and visualization, when the goal is to both run code and communicate results to others (and yourself) with text. Scripts are great for data cleaning, when the goal is to create cleaned data that you will later analyse.
+
+💡Click the **Visual** button in the top left of the toolbar to view the notebook in a more readable format.
+
+💡Click the **Outline** button in the top right of the toolbar to see a navigation panel for the notebook.
+
+### Writing and running code
+
+You can write **text** directly into a notebook, as you would a Word Document. To write **code** you need to create a code chunk. You can do this in three ways:
+
+1.  Click Insert --\> Code chunk --\> R
+
+2.  Use the keyboard shortcut **Ctrl + Alt + I** (windows) or **Cmd + Option + I** (mac) (I = the letter "i")
+
+3.  [for newer versions of R] Type **/** (forward slash) and a drop down menu should appear. Select R Code Chunk
+
+```{r}
+
+```
+
+You can run code inside a code chunk in two ways:
+
+1.  Click the small green play button at the top right of the chunk - this will run all the code inside the chunk
+
+2.  Use the keyboard shortcut **Ctrl + Enter** (windows) or **Cmd + Enter** (mac) - this will run the single line of code your cursor is on
+
+```{r}
+# Inside code chunks, text lines need to be started with a # (hashtag)
+
+# You can use R like a giant calculator! 
+2 + 3
+```
+
+💡Commenting your code is so important. The best practice is to write **why** you are doing something, not just **what** you are doing.
+
+### 🥊Challenge 1: Create and run a chunk of code
+
+Use the two methods above to create a chunk of code. In the chunk, experiment with writing and running some math. Remember to comment your code.
+
+💡You can save this notebook with your answers to the challenges and any notes you take throughout the workshop. Click the 💾 icon in the toolbar or select File --\> Save.
+
+## Objective 3: Creating variables and vectors
+
+### Variables
+
+Variables are objects that hold values. Variables can be inside data sets (like columns in an excel sheet) or stand alone objects. The syntax for creating a variable is:
+
+-   Left hand side is the variable name
+
+-   Next is the **assignment** **operator**: \<-
+
+-   Right hand side is the value to assign to that variable
+
+```{r}
+# a variable that gives the year 
+year <- 2023
+
+# print out the value
+year
+```
+
+We can read the above code as "create a variable called year and assign to it the value 2023".
+
+Variables can hold different types of values.
+
+```{r}
+# assign a numeric value to the variable year
+year <- 2023
+
+# assign a character value to the variable country
+country <- "Mexico"
+
+# assign a numeric value to the variable lifeexp
+lifeexp <- 76.2
+
+```
+
+⚠️ We will talk about different types of variables (numeric, characters, categorical) in Part 2.
+
+All variables created show up in the Global Environment (top right panel).
+
+```{r}
+# print a list of all variables in your environemnt
+ls()
+```
+
+You can remove variables from the global environment.
+
+```{r}
+
+# remove a single variable
+rm(name)
+
+# remove all variables in the global environment
+rm(list = ls())
+```
+
+⚠️ You cannot undo removing a variable. You must instead re-create the variable.
+
+If you want to rename a variable, the easiest thing to do is create a variable with the new name and remove the old variable.
+
+```{r}
+# variable storing the population of Mexico
+pop <- 126
+
+# rename to be more informative
+pop_millions <- pop
+
+# print it to confirm that it holds the value of pop
+pop_millions
+
+# remove the old variable
+rm(pop)
+
+# print out a list of current variables
+ls()
+```
+
+💡 **ls()** and **rm()** are both **functions**, which are commands that generate some output. We will learn several functions across the workshop. The best way to learn and remember functions in R is it to Google them!
+
+### 🥊Challenge 2: Creating variables
+
+Pick a country. Look up it's population and create a variable which stores the population. Now look up the GDP (Gross Domestic Product) and create another variable which stores the GDP. Can you use these two variables to create a third variable which stores the GDP per capita (GDP divided by population)?
+
+```{r}
+
+
+
+```
+
+### Vectors 
+
+Most of the time, we want to store multiple values. For example, I might want to record the population in Mexico from 2018 to 2022. **Vectors** can store multiple values as long as they're the same type (all numeric, all characters etc).
+
+To create a vector, you use the **c()** function, which stands for concatenate (meaning combine).
+
+```{r}
+# create a vector with the approx population of Mexico for 5 years  
+c(123, 124, 125, 126, 127)
+
+# as chance would have it, Mexico's population has increased by about 1 million eac year from 2018 to 2022
+```
+
+Vectors are assigned to variables using the same assignment operator (\<-) that we used for single value variables.
+
+```{r}
+# save the population counts to a vector
+pop_mexico <- c(123, 124, 125, 126, 127)
+pop_mexico
+```
+
+If we do something to the values in a vector, R applies that operation to each item in the vector.
+
+```{r}
+# multiple the values in pop_mexico by 1 million
+pop_mexico*1000000
+
+# you forgot to count 2 million people - add them to our counts
+pop_mexico + 2
+```
+
+🔔 The code above didn't permanently change the values in our population vector. How could we update the population vector to be an additional 2 million people in each year?
+
+```{r}
+
+
+
+```
+
+As well as mathematical operations, we can apply functions to vectors, for example the function **length()**.
+
+💡 To learn how to use a specific function, type **?** and then the function name - eg. **?length**. This will pull up the help page for that function. The Examples section at the end is particularly helpful.
+
+```{r}
+# look up how to use the function length
+?length
+
+# check the length of our population vector 
+length(pop_mexico)
+```
+
+### 🥊Challenge 3: Multiple ways to create vectors
+
+There are multiple ways to create vectors. For this challenge, create a vector storing the 5 years we recorded the Mexico population for (2018 to 2022). Create the vector in three different ways:
+
+1.  Using the **c()** function
+
+2.  Using the **seq()** function - we haven't used this yet so you will need to look up the help page (hint: use **?seq**)
+
+3.  Using the **:** operator (colon operator) - we also haven't used this yet but you can look up the help page with **?colon** or Google how to use it (sometimes help pages are less helpful)
+
+Check that the three vectors you create are the same length.
+
+```{r}
+
+
+
+
+```
+
+💡 It's okay to try out functions and operators and get things wrong! Interpreting error messages and debugging code is the bread and butter of coding.
+
+## 🎬Next time...
+
+Most of the time, you won't be working with single value variables or vectors. Instead, you'll be working with data that contains multiple variables. In Part 2, we will learn how to read in data to R and create **dataframes** (a way to store data with multiple rows and columns).
+
+🔔 Run the two chunks of code below. What do you think we are doing?
+
+```{r}
+# read in data
+gap_data <- read.csv(file = "../data/gapminder-FiveYearData.csv")
+head(gap_data)
+
+```
+
+```{r}
+# subset data
+gap_data[gap_data$country == "Mexico", c("country", "year", "pop")] 
+
+
+```
+
+## Key Points
+
+-   In RStudio you can write code in an **R Notebook** or an **R Script** - we are using a notebook
+
+-   Use the syntax **variable \<- value** to create a variable and assign it a value
+
+-   Vectors store multiple values as long as they're the same type
+
+-   We used the following functions: **ls()**, **rm()**, **c()**, **length()**, **seq()**. To see how to use them use **?** followed by the function name (or Google them)
+
+## 
