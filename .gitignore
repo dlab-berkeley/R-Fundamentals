@@ -355,6 +355,9 @@ vignettes/*.pdf
 *_cache/
 /cache/
 
+# R notebook HTML knitr 
+*.nb.html
+
 # Temporary files created by R markdown
 *.utf8.md
 *.knit.md
