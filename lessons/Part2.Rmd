@@ -1,0 +1,384 @@
+---
+title: "R Fundamentals - Part 2 of 4: Data Frames"
+output: html_notebook
+---
+
+## Learning Objectives
+
+Welcome to Part 2 of the R Fundamentals series. Our goals for today's workshop are:
+
+1.  Recall what a vector is and define a data frame
+
+2.  Use read.csv to import data
+
+3.  Use code to subset varaibles and rows in a data frame
+
+Throughout this workshop series, we will use the following icons:
+
+🔔 **Question**: A quick question to help you understand what's going on.
+
+🥊 **Challenge**: Interactive exercise. We'll go through these in the workshop!
+
+⚠️ **Warning**: Heads-up about tricky stuff or common mistakes.
+
+💡 **Tip**: How to do something a bit more efficiently or effectively.
+
+🎬 **Demo**: Showing off something more advanced so you know what you can use R for in the future
+
+## Data frames
+
+In Part 1, we created **vectors** that stored information on years and population. Vectors are variables that store multiple values of the same type (all numbers or all words). Most of the time, we want to work with data that have multiple variables - we call this **multidimensional data**. In R, we use **data frames** to store multidimensional data.
+
+In R language, a data frame is an object containing multiple vectors of the same length. The values in a given vector are all the same type, but the vectors may each hold a different type of value. In common language, a data frame is a collection of multiple variables (columns). Each variable contains the same number of observations (rows).
+
+![](https://r4ds.hadley.nz/images/tidy-1.png "Test")
+
+Figure: diagram of a data.frame showing variables as columns, observations as rows, and values as cells. Source: [Wickham, Cetinkaya-Rundel and Grolemund. 2023. R for Data Science (2e)](https://r4ds.hadley.nz/data-tidy.html#fig-tidy-structure)
+
+### 🥊Challenge 1: Your own data
+
+Think of an example of data you have worked with or would like to work with. What are the variables? What are the observations? Are there any research questions that you would use this data to answer?
+
+**Variables =** ...
+
+**Observations =** ...
+
+**Research problems =** ...
+
+⚠️Data frames are not the only way to store multidimensional data in R - but they are the most common and easiest to work with.
+
+## Import data
+
+You can create a data frame in R and fill it with values. Normally though, you **import** data and save it as a data frame. You can import many different types of files into R (eg. excel sheets, csv files, dta files). Today we will import a csv file.
+
+```{r}
+# import csv file 
+gap <- read.csv("gapminder-FiveYearData.csv")
+
+```
+
+🔔 The code above returned an error - why do you think this is?
+
+When we read in data, we need to specify the **relative file path**. This means, from our **current working directory**, how do we get to the file we want to import.
+
+```{r}
+# print out our current working directory
+getwd()
+
+# read in gap data using a relative file path
+gap <- read.csv("../data/gapminder-FiveYearData.csv")
+```
+
+💡Within a file path, a period "." means "in this directory". A double period ".." means "go back one directory".
+
+⚠️In R Notebooks, the working directory is always the directory in which the notebook is saved in - so all data needs to be read in relative to that directory. In R Scripts, you can change the working directory at the start of your script by using the `setwd()`function.
+
+After importing data, the first thing to check is if the data looks like you expected it to.
+
+```{r}
+# examine our data
+head(gap)
+```
+
+### 🥊Challenge 2: Import a csv file and explore the data
+
+Clear the global environment (hint: if you can't remember the function to do this, you can use the broom icon). Read in the Gapminder data saved in the Data directory and save it to an object called **gap**.
+
+Then use the functions `head()`, `dim()`, and `View()` (note the capital V) to answer the following questions:
+
+1.  How many variables are there?
+
+2.  How many observations are there?
+
+3.  What information is in this data?
+
+```{r}
+# clear the global environment
+
+
+
+# read in the gapminder data and save as an object called "gap"
+
+
+
+# use the functions head(), dim(), and View() 
+# eg. head(gap)
+
+
+
+```
+
+💡Often times different file types have different functions for importing them. To import a specific file type, Google what package and function is needed. Common packages for less common file types are `foreign` and `haven`.
+
+## Classes of data
+
+When we created variables in Part 1, we said that all the values in the variable needed to be the same type or **class**. Let's explore the variables in the gap data frame a bit more. We can select individual variables using the `$` operator.
+
+```{r}
+# select population 
+gap$pop
+
+# if you type gap$ it will show you a list of variables
+# if you start typing one and hit "tab" it will tab complete for you
+gap
+```
+
+The variables in our data frame have different classes. Lets use the `class()` operator to see this.
+
+```{r}
+# use the class() function to check the class of population
+class(gap$pop)
+
+# now country 
+class(gap$country)
+```
+
+🔔 Why is the class of `pop` **numeric** and the class of `country` is **character**?
+
+```{r}
+# check if all numeric-looking variables have the same class
+class(gap$year)
+```
+
+🔔 Why do you think `year` has class **integer** but `pop` has class **numeric**?
+
+Overall there are five classes of data:
+
+1.  **numeric**: decimals (the default for ALL numbers in R)
+
+2.  **integer**: whole numbers (positive and negative, including zero)
+
+3.  **character**: text strings (always wrapped in quotations)
+
+4.  **logical**: TRUE or FALSE (1 or 0)
+
+5.  **factor**: nominal or ordinal categorical type
+
+⚠️ We have learned the first three classes. We will encounter **logicals** and **factors** later in the series.
+
+## Subsetting data frames
+
+We often want to work with **subsets** of our data. A subset is a portion or slice of our data. It could be a subset of rows, for example, if we wanted to see all rows for the country Argentina. It could also be a subset of columns, for example, if we wanted to see only population and year. It could also be a combination of rows and columns. We do this by **indexing**.
+
+Indexing refers to specifying the rows or columns that we want to extract from an object. It is done using **square brackets**. For a single vector, we extract a specific element by providing the index of that value (index means its place in the vector).
+
+```{r}
+# create a vector with years from 2000 to 2010 in 
+years <- 2000:2010
+years
+
+# extract the 5th element of that vector
+years[5]
+
+# extract the 12th element of that vector - what happens?
+years[12]
+```
+
+Because data frames are two dimensional, we need to specify the rows and the columns we want. The format is always: **data.frame[rows, columns]**. By leaving either rows or columns blank, that selects all of them.
+
+```{r}
+# extract a single variable using the indexing method - note the rows index is empty so it will return all rows 
+gap[ , "pop"]
+
+```
+
+We can index **multiple** columns. This is done by providing a vector of variable names inside the square brackets.
+
+```{r}
+# extract multiple variables using the indexing method
+gap[ , c("pop", "year")]
+
+# we can also define the vector of names first
+variables <- c("pop" , "year", "lifeExp")
+gap[ , variables]
+```
+
+### 🥊Challenge 3: Subsetting columns
+
+Extract three variables of your choice from the gap data frame. Thinking back to Part 1 when we learned the assignment operator `<-`. See if you can assign these three extracted variables to a new data frame called **gap_subset**.
+
+```{r}
+
+
+
+
+```
+
+### Tidyverse subsetting
+
+We just leaned how to subset columns in **base R**. Base R refers to all the functions and operators that you can use in R without installing any additional packages. Base R will get you a long way in data science. However, it is not always the easiest code to read and interpret. A common package that people use to perform data science in R is `tidyverse`. The `tidyverse` package includes functions that are designed to be more intuitive for doing data cleaning, visualization, and analysis.
+
+Before we use functions from `tidyverse`. We need to take two steps:
+
+1.  **Install** the package - you only need to do this once on your computer.
+
+2.  **Load** the package into R - you need to do this every time you open a new R session.
+
+💡These steps are the same for every package you download in R.
+
+```{r}
+# install the tidyverse package - note the name of the package needs to be in quotes
+install.packages("tidyverse")
+
+# load the package into the current R session - note the name of the package doesn't need to be in quotes (!) and you can use tab complete to see a list of installed packages
+library(tidyverse)
+
+# check that tidyverse has been loaded
+?tidyverse
+```
+
+Now we have installed and loaded tidyverse, we can use its `select` function to subset variables.
+
+```{r}
+
+# look up the documentation for select - focus on the Arguments section
+?select
+
+# select year, pop, and lifeExp from the dataset 
+select(gap, year, pop, lifeExp)
+
+# assign these variables to a new dataset
+gap_subset <- select(gap, year, pop, lifeExp)
+dim(gap_subset)
+head(gap_subset)
+
+```
+
+💡If you want to learn how to use tidyverse in more detail, you can check out D-Lab's [R Data Wrangling and Manipulation](https://github.com/dlab-berkeley/R-Data-Wrangling) workshop series.
+
+### 🥊Challenge 4: Select columns using tidyverse
+
+Use the `select()` function from `tidyverse` to select three variables from the gap data frame. Assign those three variables to a new data frame. Check the dimensions of your new data frame.
+
+```{r}
+
+
+
+
+```
+
+## Filtering data frames
+
+If we open up the **gap** data frame (click on the gap object in the Global Environment panel), we see a **Filter** button. This allows us to subset the data frame by rows. We can specify that we want to only show rows for Pakistan or only show rows in the year 1992. We can achieve the same thing by writing code.
+
+### Conditional Statements
+
+In order to specify what rows we want to subset, we need to write **conditional statements** that specify which rows we want. Conditional statements check whether something is true or false. To write them, we need to use **logical operators**:
+
+-   `>` bigger than
+
+-   `<` less than
+
+-   `==` equals to (note the double equal signs)
+
+-   `!=` not equal to
+
+-   `%in%` is in
+
+```{r}
+# check whether the average population is bigger than 5 million 
+mean(gap$pop) > 5000000
+
+# check whether the minimum year is less than or equal to 1950?
+min(gap$year) <= 1950
+
+# check if there are exactly 6 variables in the gap data
+length(names(gap)) == 6
+```
+
+We can use the same logical operators to filter (subset) the rows in our data. We will use the function `filter` from `tidyverse`.
+
+```{r}
+# look up the documentation for filter
+?filter
+
+# return all rows for Pakistan
+filter(gap, country == "Pakistan")
+
+# return all rows where the life expectancy is bigger than 80
+filter(gap, lifeExp > 80)
+```
+
+We can also combine conditional statements using the `&` and `|` (or) operators.
+
+```{r}
+# return all rows in Asia with a GSP per capita above or equal to 30K
+filter(gap, continent == "Asia" & gdpPercap >= 30000)
+
+# return all rows in Germany or France
+filter(gap, country == "Germany" | country == "France")
+
+# return all rows in Mexico but not from the year 2007
+filter(gap, country == "Mexico" & year != 2007)
+```
+
+### Piping
+
+We can combine our `select` and `filter` commands to subset both columns and rows. An intuitive way to write code that combines multiple functions is to write multiple lines of code that feed into each other. We do this with the pipe operator `%>%` from `tidyverse`. The `%>%` operator takes the output on the left hand side and passes it into the function on the right hand side.
+
+```{r}
+# start with the gap data set
+gap %>%
+  # filter to Mexico - note, we don't need to specify gap inside select() any more
+  filter(country == "Mexico") %>%
+  # select the columns we want to return
+  select(country, year, pop, lifeExp) 
+
+```
+
+We can assign the subset of our original data frame to a new data frame.
+
+```{r}
+# save Mexico rows to another data frame
+data_mexico <- gap %>%
+  # filter to Mexico
+  filter(country == "Mexico") %>%
+  # select the columns we want to return
+  select(country, year, pop, lifeExp) 
+
+dim(data_mexico)
+```
+
+💡 If you have R 4.1 or higher, there is now a base R pipe operator `|>` , which works the same as `%>%` but does not need `tidyverse` to have been loaded.
+
+### 🥊 Challenge 5: Combining filter and select
+
+Start with the gap data frame. Use the `%>%` operator and the functions `select()` and `filter`. Subset the data to countries in Asia or Oceania that have a life expectancy above 60, and select the country, year, life expectancy, and GDP per capita variables. Assign your subsetted data to a new data frame called **gap_subset**.
+
+```{r}
+
+
+
+```
+
+## 🎬Next time...
+
+Selecting and filtering data are frames are key steps in telling stories from our data. Looking at summary statistics and visualization are the next steps for understanding our data and presenting it to other people.
+
+🔔 Run the chunk of code below. What do you think we are doing?
+
+```{r}
+gap %>%
+  filter(year == 2007 | year == 1952) %>%
+  select(gdpPercap, lifeExp, continent, year) %>%
+  ggplot(aes(x = lifeExp, y = log(gdpPercap), color = continent, shape = continent)) +
+  geom_point() +
+  facet_wrap(~year) +
+  ggtitle("Relationship between Life Expectancy and GDP per capita") +
+  ylab("GDP per capita (logged)") +
+  xlab("Life Expectancy (years)") +
+  theme_bw() 
+
+```
+
+## Key Points
+
+-   All types of data files can be read into R and saved as **data frames**
+
+-   Variables can be different classes (type), common classes are **numeric**, **integers** and **characters**
+
+-   In **base R**, use indexing to subset the data by specifying the rows and columns we want in square brackets
+
+-   In **tidyverse**, use `filter()` to limit to specific rows and `select()` to select variables
+
+-   The pipe operator `%>%` is a way to pass output from one line of code to the next line of code
