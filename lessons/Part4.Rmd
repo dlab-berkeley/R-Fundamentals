@@ -1,0 +1,394 @@
+---
+title: "R Fundamentals - Part 3 of 4: Data Frames"
+output: html_notebook
+---
+
+## Learning Objectives
+
+Welcome to Part 4 of the R Fundamentals series. Our goals for today's workshop are: \<UPDATE THESE\>
+
+1.  Recall what a vector is and define a data frame
+
+2.  Use read.csv to import data
+
+3.  Use code to subset variables and rows in a data frame
+
+Throughout this workshop series, we will use the following icons:
+
+🔔 **Question**: A quick question to help you understand what's going on.
+
+🥊 **Challenge**: Interactive exercise. We'll go through these in the workshop!
+
+⚠️ **Warning**: Heads-up about tricky stuff or common mistakes.
+
+💡 **Tip**: How to do something a bit more efficiently or effectively.
+
+🎬 **Demo**: Showing off something more advanced so you know what you can use R for in the future
+
+Before we get started, lets load in the `tidyverse` package that we used in Part 2. We will use this today for subsetting our data and for making plots.
+
+```{r}
+# if you haven't install tidyverse before, uncomment this line 
+#install.packages("tidyverse")
+
+# if you have previously installed tidyverse, load it into the current R session
+library(tidyverse)
+```
+
+### 🥊Challenge 1: Reading in data
+
+Load in `data/gapminder.csv` using the `read.csv()` function from earlier workshops and assign it to the object **gap**.
+
+```{r}
+
+
+
+```
+
+## Visualizing Data 
+
+In Part 3 we used `summary()`, `table()`, and `mean()` to learn some things from our data. For example:
+
+### 🥊Challenge 2: What is the average life expectancy in our data? How much does life expectancy range?
+
+```{r}
+
+mean(...)
+
+summary(...)
+
+```
+
+We can combine our summary statistics functions with the subsetting functions `filter()` and `select()` from `tidyverse` to ask more specific questions. **For example, what is the average life expectancy in Asia?**
+
+```{r}
+
+gap_asia <- gap %>%
+  filter(...)
+
+summary(gap_asia$lifeExp)
+
+```
+
+A great way to ask more involved questions about our data and convey this information is to make a plot!
+
+**🎬 How does the life expectancy compare across continents? A box plot example...**
+
+```{r}
+
+gap %>%
+  ggplot(aes(x = continent, y = lifeExp)) +
+  geom_boxplot(aes(fill = continent)) +
+  theme_bw() +
+  ylab("Life Expectancy (years)") +
+  ggtitle("Life expectancy by continent (1952-2007)")
+
+  
+```
+
+**🔔 What are some things we learn from this plot?**
+
+### ggplot 
+
+`ggplot` is a package from `tidyverse` that helps create highly customizable plots, all of which have the same syntax underlying them.
+
+A `ggplot` is comprised of three fundamental building blocks:
+
+1.  **data**: typically as a data.frame
+
+2.  **"aes"thetics**: how our variables will be visually represented (x and y axes, colors, shapes etc.)
+
+3.  **geoms**: what type of plot will represent our data (histogram, scatter plot, bar chart etc.)
+
+One thing to remember is that `ggplot` works in layers, similar to photoimaging software such as Photoshop. We create a base layer, and then stack layers on top of that base layer. New layers are added to a plot using the addition symbol `+`. Each of the building blocks above is added as a new layer.
+
+## Box plots
+
+Here we re-create the boxplot from above.
+
+1.  **data**: the first layer of a `ggplot` is always the data. This creates a blank canvas on which to add other layers. For us, the data is the `gap` data.frame.
+
+```{r}
+
+ggplot(data = gap)
+
+```
+
+2.  **"aes"thetics**: next we specify which variables we want to visualize and how. Here we want `continent` on the x-axis, `lifeExp` on the y-axis, and `continent` also as the fill color. All aesthetics go inside the `aes()` function. This prepares our blank canvas.
+
+```{r}
+
+ggplot(data = gap, aes(x = continent, y = lifeExp, fill = continent))
+```
+
+3.  **geom**: finally we specify what type of plot we actually want to visualize our data. For us, this is a box plot. Note how we add a new layer with the `+` (not the pipe `%>%` or `|>`). Now our canvas has a picture!
+
+```{r}
+ggplot(data = gap, aes(x = continent, y = lifeExp, fill = continent)) +
+  geom_boxplot()
+```
+
+Any other things that we want to add or customize about our plot we also add as layers. To recreate the plot above, we can add a title, change the axis titles, and change the theme (the overall look of the plot).
+
+```{r}
+
+ggplot(data = gap, aes(x = continent, y = lifeExp, fill = continent)) +
+  geom_boxplot() +
+  # add a title
+  ggtitle("Life expectancy by continent (1952-2007)") +
+  # change the y axis title
+  ylab("Life Expectancy (years)") +
+  # change the x axis title
+  xlab("Continent") +
+  # change the overall theme 
+  theme_bw() +
+  # remove the legend, b/c this is redundant
+  theme(legend.position = 'none')
+  
+
+```
+
+### 🥊Challenge 3: What plots could we create from our data?
+
+Explore the variables in the `gap` data frame. What other questions could we ask from our data? What plot would answer the question?
+
+-   Q: Which continent has the most varied life expectancy? A: Box plot showing distribution of life expectancy by continent.
+
+-   Q: ... A: ...
+
+## Scatter plots
+
+Box plots are good for looking at the distribution of a single continuous variable (eg. life expectancy) and showing that for different groups (eg. continents). To show the relationship between two continuous variables a scatter plot is better. For example, **has life expectancy increased with time in Oceania?**
+
+To make a scatter plot, we use the same syntax as above, but rather than `geom_boxplot()` we use `geom_point()`.
+
+```{r}
+
+gap %>%
+  # limit data to just counties in oceania
+  filter(continent == "Oceania") %>%
+  ggplot(aes(x = year, y = lifeExp)) +
+  geom_point()
+
+```
+
+**🔔 Why are there two points in each year?**
+
+```{r}
+# we can color the points to indicate which country they represent - this is another aesthetic 
+
+gap %>%
+  filter(continent == "Oceania") %>%
+  ggplot(aes(x = year, y = lifeExp, color = country)) +
+  geom_point()
+```
+
+**🔔 What can we add to the plot to make it more informative?**
+
+```{r}
+
+gap %>%
+  filter(continent == "Oceania") %>%
+  ggplot(aes(x = year, y = lifeExp, color = country)) +
+  geom_point() +
+  # add more layers to make the plot more informative
+  ...
+
+```
+
+### 🥊Challenge 4: Create a scatter plot
+
+Create a scatter plot that shows the relationship between `lifeExp` and `gdpPercap` . Start with a "simple" plot using `geom_point()`. Then think about edits you could make to the plot that might make it easier to read. For example, changing the x and y axis, adding a title, coloring the points by a certain grouping etc.
+
+```{r}
+
+gap %>%
+  ggplot(...)
+
+```
+
+💡`ggplot` can be used to create many different plots ([here](https://r-graph-gallery.com/index.html) are some examples with the underlying code). To learn more about using `ggplot` you can take D-Lab's [R Data Visualization](https://github.com/dlab-berkeley/R-Data-Visualization).
+
+## For-loops
+
+Often times, we want to do the same thing over and over again in our code but with minor changes. For example, we might want to plot the life expectancy against GDP per capita for multiple continent in our data.
+
+```{r}
+
+# plot gdppercap vs. lifeExp for Oceania 
+gap %>%
+  filter(continent == "Oceania") %>%
+  ggplot(aes(x = gdpPercap, y = lifeExp)) +
+  geom_point() +
+  ggtitle("Life expectancy against GDP per capita in Oceania") +
+  ylab("Life expectancy (years)") +
+  xlab("GDP per capita (dollars)") +
+  theme_bw()
+```
+
+If we wanted to show this for the Americas, we could copy and paste the code and change the continent.
+
+```{r}
+# plot gdppercap vs. lifeExp for the Americas 
+gap %>%
+  filter(continent == "Americas") %>%
+  ggplot(aes(x = gdpPercap, y = lifeExp)) +
+  geom_point() +
+  ggtitle("Life expectancy against GDP per capita in Oceania") +
+  ylab("Life expectancy (years)") +
+  xlab("GDP per capita (dollars)") +
+  theme_bw()
+```
+
+**🔔 What is wrong with the plot above? Have we made a mistake?**
+
+Instead of copying and pasting code, we can instead put the code into a **for-loop** and loop over the list of continents. For-loops are built on the idea of "iteration". We iterate through a procedure, with some counter keeping track of how far along the overall procedure we are. The structure of a for-loop is as follows:
+
+```{r}
+# # structure of code
+# for(variable in sequence) {
+#   
+#   statement
+# 
+# }
+
+# example
+for (i in 1:5){
+  
+  print(paste("The number is:", i))
+  
+}
+
+```
+
+For-loops in R have four main components:
+
+1.  The `for` keyword: this keyword tells R that you want to iterate over a loop.
+
+2.  The **sequence**: this tells R what values we want to iterate (or loop) over. In the example, we are iterating over the sequence `c(1, 2, 3, 4, 5)`. It doesn't have to be a sequence of number, it could also be strings eg. continents in our dataset.
+
+3.  The **iterator**: this is the variable that moves through the sequence and takes on each value in turn. In this example, `i` is the iterator. In the first iteration `i = 1`, in the second `i = 2`, and so on. The iterator can be called anything, though `i` is common.
+
+4.  Loop body: the curly braces define what code is run in each loop. Anytime the iterator `i` shows up in this code, it will be replaced by the current value of `i` as defined by the sequence.
+
+💡 You can always tell how many times a loop will run by finding the length of the sequence. In this case, `i` takes on 5 values from 1 to 5, so the loop runs 5 times.
+
+You can also iterate over sequences that are not numeric.
+
+```{r}
+# make a list of the continents in our data
+continent_list <- unique(gap$continent)
+
+for (i in continent_list){
+# everytime we would have written the continent, we now write i
+    
+  # limit to continent i
+  gap_subset <- gap %>%
+    filter(continent == i)
+  
+  # save the mean life expectancy for that continent
+  lifeexp_mean <- mean(gap_subset$lifeExp)
+  
+  # print out a statement
+  print(paste0("The mean life expectancy in ", i, " is ", lifeexp_mean))
+  
+}
+```
+
+💡`print()` and `paste0()` are really helpful functions when writing code that uses for-loops or functions (more below). `paste0` concatenates things together into a single string/sentence and `print()` prints it out.
+
+### 🥊Challenge 5: Write a for loop
+
+Make a list of all the years in our data using the `unique()` function and save it to `year_list`. Write a for-loop that iterates over the list of years and prints out the average GDP per capita in that year. Use the code above to help.
+
+```{r}
+
+
+
+
+
+
+```
+
+### For-loops with ggplot 
+
+Returning to our example, we can loop over the continents in our data set and output a plot for each continent.
+
+```{r}
+# first, define the sequence of continents
+continent_list <- unique(gap$continent)
+continent_list
+
+# second, write the for-loop 
+for (c in continent_list){
+  
+  # everytime we would have written the continent, we now write c 
+  p <- gap %>%
+    filter(continent == c) %>%
+    ggplot(aes(x = gdpPercap, y = lifeExp)) +
+    geom_point() +
+    # here we use the paste0() function to allow c to change 
+    ggtitle(paste0("Life expectancy against GDP per capita in ", c)) +
+    ylab("Life expectancy (years)") +
+    xlab("GDP per capita (dollars)") +
+    theme_bw()
+  
+  print(p)
+  
+}
+
+```
+
+## 🎬Functions instead of for-loops
+
+For-loops are great for iterating over sequences - they speed up coding and make code less prone to errors. However, we can't easily retrieve the output from a previous loop or change multiple things about the plot (what if we wanted to change both the continent *and* the year)? We can do this by writing a custom function.
+
+We have used many functions, such as `summary()` , `read.csv()` and `ggplot()`. All of them took an input (or multiple inputs), did something to that input, and returned an output. Custom functions are functions we define ourselves and save within our R session. Functions look similar to for-loops, but rather than iterating over a sequence, they can be called at any time and take multiple inputs.
+
+For example, rather than iterating over a list of continents, we can write a function that takes the continent name as an input, and outputs a plot showing GDP per capita versus life expectancy for that continent.
+
+```{r}
+# function that plots the life expectancy vs GDP per capita for a given continent 
+
+life_gdp_plot <- function(c){
+  
+  # arguments:
+  # c = continent name (string)
+  
+  p <- gap %>%
+    filter(continent == c) %>%
+    ggplot(aes(x = gdpPercap, y = lifeExp)) +
+    geom_point() +
+    # here we use the paste0() function to allow c to change 
+    ggtitle(paste0("Life expectancy against GDP per capita in ", c)) +
+    ylab("Life expectancy (years)") +
+    xlab("GDP per capita (dollars)") +
+    theme_bw()
+  
+  return(p)
+  
+}
+
+
+```
+
+Running this chunk of code does not run the code inside the function. It saves a function called `life_gdp_plot()`, which now appears in our global environment and can be called at any time in our session.
+
+```{r}
+
+# execute the function for continent = Oceania 
+life_gdp_plot("Oceania")
+
+```
+
+```{r}
+# execute the function for continent = Europe
+life_gdp_plot("Europe")
+
+```
+
+Functions are a great tool for improving your code, especially when you find yourself copying and pasting code. To read more about functions we recommend the [Functions chapter in R for Data Science](https://r4ds.hadley.nz/functions.html).
+
+## Wrap Up 
+
+In this four part workshop you have learned:

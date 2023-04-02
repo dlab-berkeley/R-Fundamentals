@@ -11,7 +11,7 @@ Welcome to Part 2 of the R Fundamentals series. Our goals for today's workshop a
 
 2.  Use read.csv to import data
 
-3.  Use code to subset varaibles and rows in a data frame
+3.  Use functions from the `tidyverse` package to subset variables and rows in a data frame
 
 Throughout this workshop series, we will use the following icons:
 
@@ -29,7 +29,7 @@ Throughout this workshop series, we will use the following icons:
 
 In Part 1, we created **vectors** that stored information on years and population. Vectors are variables that store multiple values of the same type (all numbers or all words). Most of the time, we want to work with data that have multiple variables - we call this **multidimensional data**. In R, we use **data frames** to store multidimensional data.
 
-In R language, a data frame is an object containing multiple vectors of the same length. The values in a given vector are all the same type, but the vectors may each hold a different type of value. In common language, a data frame is a collection of multiple variables (columns). Each variable contains the same number of observations (rows).
+In R language, a data frame is an object containing multiple vectors of the same length. The values in a given vector are all the same type, but the vectors may each hold a different type of value. In common language, a data frame is a collection of variables (columns). Each variable contains the same number of observations (rows).
 
 ![](https://r4ds.hadley.nz/images/tidy-1.png "Test")
 
@@ -53,7 +53,7 @@ You can create a data frame in R and fill it with values. Normally though, you *
 
 ```{r}
 # import csv file 
-gap <- read.csv("gapminder-FiveYearData.csv")
+gap <- read.csv("gapminder.csv")
 
 ```
 
@@ -66,12 +66,13 @@ When we read in data, we need to specify the **relative file path**. This means,
 getwd()
 
 # read in gap data using a relative file path
-gap <- read.csv("../data/gapminder-FiveYearData.csv")
+gap <- read.csv("../data/gapminder.csv")
+
 ```
 
 💡Within a file path, a period "." means "in this directory". A double period ".." means "go back one directory".
 
-⚠️In R Notebooks, the working directory is always the directory in which the notebook is saved in - so all data needs to be read in relative to that directory. In R Scripts, you can change the working directory at the start of your script by using the `setwd()`function.
+⚠️In R Notebooks, the working directory is always the directory in which the notebook is saved in - so all data needs to be read in relative to that directory. In R Scripts, you can change the working directory at the start of your script by using the `setwd()` function.
 
 After importing data, the first thing to check is if the data looks like you expected it to.
 

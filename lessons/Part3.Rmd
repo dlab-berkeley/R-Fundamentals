@@ -1,0 +1,292 @@
+---
+title: "R Fundamentals - Part 3 of 4: Data Frames"
+output: html_notebook
+---
+
+## Learning Objectives
+
+Welcome to Part 3 of the R Fundamentals series. Our goals for today's workshop are: \<UPDATE THESE\>
+
+1.  Recall what a vector is and define a data frame
+
+2.  Use read.csv to import data
+
+3.  Use code to subset variables and rows in a data frame
+
+Throughout this workshop series, we will use the following icons:
+
+🔔 **Question**: A quick question to help you understand what's going on.
+
+🥊 **Challenge**: Interactive exercise. We'll go through these in the workshop!
+
+⚠️ **Warning**: Heads-up about tricky stuff or common mistakes.
+
+💡 **Tip**: How to do something a bit more efficiently or effectively.
+
+🎬 **Demo**: Showing off something more advanced so you know what you can use R for in the future
+
+Before we get started, lets load in the `tidyverse` package that we used in Part 2. We will use this today for subsetting our data and for making plots.
+
+```{r}
+# if you haven't install tidyverse before, uncomment this line 
+#install.packages("tidyverse")
+
+# if you have previously installed tidyverse, load it into the current R session
+library(tidyverse)
+```
+
+### 🥊Challenge 1: Reading in data
+
+In Part 2 we learned to read in a csv file and assign it to a data frame. Lets do that again. How can you find out what variables we have in our data?
+
+```{r}
+
+
+
+
+```
+
+## Functions
+
+We have already used several functions in this series. For example, we just used `read.csv()` and `head()`. Functions are commands that take an input and return some output. They are identified by the trailing brackets. Inside the brackets go:
+
+1.  **input** - the thing that the function is doing something to
+
+2.  **arguments** - modifications we make to the function
+
+🔔 What is the **input** for the `head()` function?
+
+```{r}
+head(gap)
+
+```
+
+⚠️ Not all functions have inputs or arguments - for example, what is the input for the `ls()` function?
+
+```{r}
+ls()
+
+```
+
+We can modify functions by changing the arguments in the function. For example, the default number of rows returned by `head()` is 6. We can see that by looking at the `?head` help page. Default values for arguments are shown after the equal sign.
+
+```{r}
+# look up the help page for head()
+?head
+
+# change the argument n 
+head(gap, n = 10)
+
+```
+
+## Summary Statistics
+
+Before creating visualizations, computing basic summary statistics is a good first step after familiarizing yourself with your data. The `summary()` function gives statistics about the distribution of a variable.
+
+```{r}
+# summary for life expectancy
+summary(gap$lifeExp)
+
+```
+
+**🔔 What do we learn about the countries in our data from this?**
+
+We can also use the `mean()` function to report just the mean of a variable.
+
+```{r}
+mean(gap$lifeExp)
+
+```
+
+## Missing Values
+
+### 🥊Challenge 2: Missing values and functions
+
+What do you notice when you use the `mean()` and `summary()` functions on `gap$gdpPercap` ?
+
+```{r}
+# try out mean() and summary() on gdpPercap
+
+```
+
+When we have missing values, functions may perform differently than expected. It is important to know if and why there are missing values in our data. In R, missing values are represented with `NA`, which stands for "not available" or "not applicable". We can use the `is.na()` function to count how many missing values there are in a variable.
+
+```{r}
+# count the number of missing values in gdpPercap
+is.na(gap$gdpPercap) %>% 
+  sum()
+
+# we can also get this information from summary()
+summary(gap$gdpPercap)
+
+```
+
+**🔔 Do any of the other variables contain missing values? Edit the code below to find out and answer in the poll.**
+
+```{r}
+# see what variables we have
+names(gap)
+
+# check which ones are missing by changing the variable after $
+is.na(gap$year) %>% 
+  sum()
+```
+
+When we ran `mean(gap$gdpPercap)` it returned `NA` because it can't calculate a mean over missing values. We need to tell it to explicitly ignore the missing values and calculate the mean using the non-missing values.
+
+### 🥊Challenge 3: Looking up function arguments in documentation
+
+Look up the documentation for `mean`. Which argument will let us ignore `NA` values? What value should we set this argument to? Test it out below.
+
+```{r}
+# look up the documentation for mean
+?mean
+
+# calculate the mean of gdpPercap ignoring missing values 
+mean(gap$gdpPercap, ...) # <- edit this
+
+# is this the same as using summary?
+summary(gap$gdpPercap)
+```
+
+⚠️ Some functions ignore `NA` values by default and some do not. The function documentation will tell you what the default behavior is , or you can find out with trial and error.
+
+### 🥊Challenge 4: Dropping missing values
+
+We might want to drop the missing values from our data entirely. We can combine `filter()` and `is.na()` to remove rows that contain missing values. Try out the code in the poll and choose the option(s) that drop all the rows with missing values for `gdpPercap`.
+
+Reminder: `filter()` takes a conditional statement, checks if it's true, and then **keeps** all rows that the statement is true for. We want to keep all rows where there are **no** missing values for `gdpPercap`.
+
+```{r}
+# fill in a conditional statement in filter to keep only rows with non-missing values of gdpPercap
+gap_nomissing <- gap %>%
+  filter(...)
+
+# check how many rows we've dropped
+dim(gap)
+dim(gap_nomissing)
+
+# check if we have any missing values for gdpPercap
+summary(gap_nomissing$gdpPercap)
+```
+
+⚠️When dropping missing values it drops the entire row of data that contained those missing values. This means we loose cells that had non-missing values for other variables. Choosing whether to drop the row entirely or using functions that ignore missing values will depend on what you're trying to do in your data cleaning and analysis.
+
+### **🎬Reporting the missing values for all variables in our data**
+
+The code below uses two functions from **tidyverse**, `summarize()` and `pivot_longer()`, to make a table showing the number of missing values in each variable. We learn these functions in [R Data Wrangling](https://github.com/dlab-berkeley/R-Data-Wrangling), which is a great course to take after R Fundamentals.
+
+```{r}
+gap %>%
+  summarize(across(everything(), ~sum(is.na(.)))) %>%
+  pivot_longer(cols = everything(),
+               names_to = 'variable', 
+               values_to = 'NA_count')
+```
+
+## Categorical Variables
+
+The functions `summary()` and `mean()` are helpful for **numeric** variables.
+
+```{r}
+# two types of numeric variables:
+
+# (1) numeric
+class(gap$lifeExp)
+
+# (2) integer 
+class(gap$year)
+```
+
+What is we try to use them on **character** variables?
+
+```{r}
+summary(gap$continent)
+
+summary(gap$country)
+
+```
+
+Instead we can use the `table()` function to print out a table of all the values that `continent` takes and how many times each value appears (it's frequency).
+
+```{r}
+table(gap$continent)
+```
+
+We can also create a cross-table where we provide two variables to `table()` and it shows the counts for each cross of the two variables.
+
+```{r}
+table(gap$continent, gap$year)
+```
+
+### Factors
+
+`country` and `continent` are both **categorical** variables, which means they have a fixed and known set of possible values. For example, `continent` can be one of five values: Africa, Americas, Asia, Europe, or Oceania.
+
+⚠️ Not all character variables are categorical: a variable of people's names does not have a limited and known set of values but it is a character variable. Likewise, not all categorical variables are characters: shoe size is a numeric variable but it has a fixed set of values so it is a categorical variable.
+
+In R, **categorical** variables are best stored as **factors** because this tells R that the variable can take one of a fixed set of values. This is helpful when performing calculations or making plots. The set of values that a factor variable can take are called **levels**. For the `continent` variable, the levels are Africa, Americas, Asia, Europe, and Oceania.
+
+To convert a variable to a categorical variable, you use the `factor()` function. By default, it will look for all unique values in the variable and set those as the possible levels.
+
+```{r}
+# convert gap$continent into a factor variable
+continent_factor <- factor(gap$continent)
+
+# now we can use summary() on it
+summary(continent_factor)
+
+```
+
+One benefit of factors is that it stores the potential levels, even if we do not have any values for that level.
+
+```{r}
+
+# create a continent variable where we don't have any countries from Oceania 
+continent_missing <- c("Africa", "Africa", "Americas", "Europe", "Asia", "Europe")
+
+# we can convert this to a factor and record all the possible levels
+continent_missing_factor <- factor(continent_missing, levels = c("Africa", "Americas", "Asia", "Europe", "Oceania"))
+
+# check the summary() output
+summary(continent_missing_factor)
+
+```
+
+We can also use factors to specify the order in which we want the values to appear by ordering the levels. For character factors, the default order is alphabetical. We want to order our continent variable by land size of the continent, from largest to smallest.
+
+```{r}
+# provide the levels in the order we want and specify ordered = T
+continent_size <- factor(gap$continent, levels = c("Asia", "Africa", "Americas", "Europe", "Oceania"), ordered = T)
+
+# check the summary() output
+summary(continent_size)
+
+# is it different to before?
+summary(continent_factor)
+```
+
+### 🥊Challenge 5: Ordering factors
+
+Create a new variable that is a factor version of `continent` ordered by the population of the continent from smallest to largest. To help you, this code displays the total population for each continent in our data in 2007.
+
+```{r}
+
+gap %>%
+  filter(year == 2007) %>%
+  group_by(continent) %>%
+  summarize(total_pop = sum(pop)) %>%
+  arrange(total_pop)
+
+```
+
+```{r}
+# your code here
+continent_pop <- ...
+
+
+```
+
+🔔The code above contains functions we haven't used yet. What do you think `group_by()` and `summarize()` are doing? If we instead wanted to the total population for each `country` in 2007, what should we change?
+
+⚠️ We create factor versions of our `continent` variable outside of the gap data frame. To create new variable or modify existing variables in a data frame we can use the `mutate()` function from **tidyverse**. This is beyond this workshop but is covered in [R Data Wrangling](https://github.com/dlab-berkeley/R-Data-Wrangling).

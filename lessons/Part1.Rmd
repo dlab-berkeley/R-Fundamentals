@@ -258,14 +258,14 @@ Most of the time, you won't be working with single value variables or vectors. I
 
 ```{r}
 # read in data
-gap_data <- read.csv(file = "../data/gapminder-FiveYearData.csv")
-head(gap_data)
+gap <- read.csv(file = "../data/gapminder.csv")
+head(gap)
 
 ```
 
 ```{r}
 # subset data
-gap_data[gap_data$country == "Mexico", c("country", "year", "pop")] 
+gap[gap$country == "Mexico", c("country", "year", "pop")] 
 
 
 ```
