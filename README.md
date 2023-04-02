@@ -34,9 +34,9 @@ R Fundamentals has 4 parts. Each of the parts takes 2 hours, and is delivered in
 
 2.  Part 2: Data frames and variable types
 
-3.  Part 3: Summary statistics and data visualizations
+3.  Part 3: Subsetting data and summary statistics
 
-4.  Part 4: Using functions
+4.  Part 4: Data visualizations and for-loops
 
 ## Installation Instructions
 
