@@ -5,13 +5,13 @@ output: html_notebook
 
 ## Learning Objectives
 
-Welcome to Part 3 of the R Fundamentals series. Our goals for today's workshop are: \<UPDATE THESE\>
+Welcome to Part 3 of the R Fundamentals series. Our goals for today's workshop are:
 
-1.  Recall what a vector is and define a data frame
+1.  Use conditional statements to filter rows
 
-2.  Use read.csv to import data
+2.  Practice generating summary statistics
 
-3.  Use code to subset variables and rows in a data frame
+3.  Learn how to store categorical variables as factors
 
 Throughout this workshop series, we will use the following icons:
 
@@ -37,10 +37,108 @@ library(tidyverse)
 
 ### 🥊Challenge 1: Reading in data
 
-In Part 2 we learned to read in a csv file and assign it to a data frame. Lets do that again. How can you find out what variables we have in our data?
+In Part 2 we learned to read in a csv file and assign it to a data frame called `gap`. Lets do that again. How can you find out what variables we have in our data?
 
 ```{r}
 
+
+
+
+```
+
+## Filtering data frames
+
+If we open up the `gap` data frame (click on the gap object in the Global Environment panel), we see a **Filter** button. This allows us to subset the data frame by rows. We can specify that we want to only show rows for Pakistan or only show rows in the year 1992. We can achieve the same thing by writing code.
+
+### Conditional Statements
+
+In order to specify what rows we want to subset, we need to write **conditional statements** that specify which rows we want. Conditional statements check whether something is true or false. To write them, we need to use **logical operators**:
+
+-   `>` bigger than
+
+-   `<` less than
+
+-   `==` equals to (note the double equal signs)
+
+-   `!=` not equal to
+
+-   `%in%` is in
+
+**🛎️ Answer in the poll whether the following statements are TRUE or FALSE?**
+
+```{r}
+# check whether the average population is bigger than 5 million 
+mean(gap$pop) > 5000000
+
+# check whether the minimum year is less than or equal to 1950?
+min(gap$year) <= 1950
+
+# check if there are exactly 6 variables in the gap data
+length(names(gap)) == 6
+```
+
+### Filtering
+
+We can use the same logical operators to filter (subset) the rows in our data. We will use the function `filter` from `tidyverse`.
+
+```{r}
+# look up the documentation for filter
+?filter
+
+# return all rows for Pakistan
+filter(gap, country == "Pakistan")
+
+# return all rows where the life expectancy is bigger than 80
+filter(gap, lifeExp > 80)
+```
+
+We can also combine conditional statements using the `&` and `|` (or) operators.
+
+```{r}
+# return all rows in Asia with a GSP per capita above or equal to 30K
+filter(gap, continent == "Asia" & gdpPercap >= 30000)
+
+# return all rows in Germany or France
+filter(gap, country == "Germany" | country == "France")
+
+# return all rows in Mexico but not from the year 2007
+filter(gap, country == "Mexico" & year != 2007)
+```
+
+### Piping
+
+We can combine our `select` and `filter` commands to subset both columns and rows. An intuitive way to write code that combines multiple functions is to write multiple lines of code that feed into each other. We do this with the pipe operator `%>%` from `tidyverse`. The `%>%` operator takes the output on the left hand side and passes it into the function on the right hand side.
+
+```{r}
+# start with the gap data set
+gap %>%
+  # filter to Mexico - note, we don't need to specify gap inside select() any more
+  filter(country == "Mexico") %>%
+  # select the columns we want to return
+  select(country, year, pop, lifeExp) 
+
+```
+
+We can assign the subset of our original data frame to a new data frame.
+
+```{r}
+# save Mexico rows to another data frame
+data_mexico <- gap %>%
+  # filter to Mexico
+  filter(country == "Mexico") %>%
+  # select the columns we want to return
+  select(country, year, pop, lifeExp) 
+
+dim(data_mexico)
+```
+
+💡 If you have R 4.1 or higher, there is now a base R pipe operator `|>` , which works the same as `%>%` but does not need `tidyverse` to have been loaded.
+
+### 🥊 Challenge 2: Combining filter and select
+
+Start with the gap data frame. Use the `%>%` operator and the functions `select()` and `filter`. Subset the data to countries in Asia or Oceania that have a life expectancy above 60, and select the country, year, life expectancy, and GDP per capita variables. Assign your subsetted data to a new data frame called **gap_subset**.
+
+```{r}
 
 
 
@@ -100,7 +198,7 @@ mean(gap$lifeExp)
 
 ## Missing Values
 
-### 🥊Challenge 2: Missing values and functions
+### 🥊Challenge 3: Missing values and functions
 
 What do you notice when you use the `mean()` and `summary()` functions on `gap$gdpPercap` ?
 
@@ -134,7 +232,7 @@ is.na(gap$year) %>%
 
 When we ran `mean(gap$gdpPercap)` it returned `NA` because it can't calculate a mean over missing values. We need to tell it to explicitly ignore the missing values and calculate the mean using the non-missing values.
 
-### 🥊Challenge 3: Looking up function arguments in documentation
+### 🥊Challenge 4: Looking up function arguments in documentation
 
 Look up the documentation for `mean`. Which argument will let us ignore `NA` values? What value should we set this argument to? Test it out below.
 
@@ -151,7 +249,7 @@ summary(gap$gdpPercap)
 
 ⚠️ Some functions ignore `NA` values by default and some do not. The function documentation will tell you what the default behavior is , or you can find out with trial and error.
 
-### 🥊Challenge 4: Dropping missing values
+### 🥊Challenge 5: Dropping missing values
 
 We might want to drop the missing values from our data entirely. We can combine `filter()` and `is.na()` to remove rows that contain missing values. Try out the code in the poll and choose the option(s) that drop all the rows with missing values for `gdpPercap`.
 
@@ -198,7 +296,7 @@ class(gap$lifeExp)
 class(gap$year)
 ```
 
-What is we try to use them on **character** variables?
+What if we try to use them on **character** variables?
 
 ```{r}
 summary(gap$continent)
@@ -290,3 +388,30 @@ continent_pop <- ...
 🔔The code above contains functions we haven't used yet. What do you think `group_by()` and `summarize()` are doing? If we instead wanted to the total population for each `country` in 2007, what should we change?
 
 ⚠️ We create factor versions of our `continent` variable outside of the gap data frame. To create new variable or modify existing variables in a data frame we can use the `mutate()` function from **tidyverse**. This is beyond this workshop but is covered in [R Data Wrangling](https://github.com/dlab-berkeley/R-Data-Wrangling).
+
+## 🎬Next time...
+
+Selecting and filtering data are frames are key steps in telling stories from our data. Looking at summary statistics and visualization are the next steps for understanding our data and presenting it to other people.
+
+🔔 Run the chunk of code below. What do you think we are doing?
+
+```{r}
+gap %>%
+  filter(year == 2007 | year == 1952) %>%
+  select(gdpPercap, lifeExp, continent, year) %>%
+  ggplot(aes(x = lifeExp, y = log(gdpPercap), color = continent, shape = continent)) +
+  geom_point() +
+  facet_wrap(~year) +
+  ggtitle("Relationship between Life Expectancy and GDP per capita") +
+  ylab("GDP per capita (logged)") +
+  xlab("Life Expectancy (years)") +
+  theme_bw() 
+
+```
+
+## Key Points
+
+-   Use conditional statements with logical operators to filter data frames to a subset of rows
+-   The pipe operator `%>%` is a way to pass output from one line of code to the next line of code
+-   The functions `summary()` and `table()` produce summary statistics about variables
+-   Different functions in R treat missing values differently - always be aware of whether you have missing data

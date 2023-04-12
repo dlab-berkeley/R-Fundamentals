@@ -11,7 +11,7 @@ Welcome to Part 2 of the R Fundamentals series. Our goals for today's workshop a
 
 2.  Use read.csv to import data
 
-3.  Use functions from the `tidyverse` package to subset variables and rows in a data frame
+3.  Use functions from the `tidyverse` package to subset variables in a data frame
 
 Throughout this workshop series, we will use the following icons:
 
@@ -25,17 +25,52 @@ Throughout this workshop series, we will use the following icons:
 
 🎬 **Demo**: Showing off something more advanced so you know what you can use R for in the future
 
+## Vector recap
+
+In Part 1 we learned how to create vectors using the `c()` function.
+
+```{r}
+# create a vector storing 5 year from 2018 to 2022
+years <- c(2018, 2019, 2020, 2021, 2022)
+```
+
+We can also use the `seq()` function to create vectors.
+
+```{r}
+# look at the seq() help page
+?seq
+
+# try using seq() to create the same vector as above, called years_v2
+years_v2 <- ...
+
+```
+
+### 🥊Challenge 1: Another way to create vectors
+
+A third way to create a vector is using the `:` operator (colon operator). Look up the help page with `?colon` or Google how to use it (sometimes help pages are less helpful). Create a vector called `years_v3` that is the years 2018 to 2022 using the `:` operator.
+
+Check that the three vectors we've created are the same length.
+
+```{r}
+
+years_v3 <- ...
+
+
+```
+
+💡 It's okay to try out functions and operators and get things wrong! Interpreting error messages and debugging code is the bread and butter of coding.
+
 ## Data frames
 
-In Part 1, we created **vectors** that stored information on years and population. Vectors are variables that store multiple values of the same type (all numbers or all words). Most of the time, we want to work with data that have multiple variables - we call this **multidimensional data**. In R, we use **data frames** to store multidimensional data.
+**Vectors** are variables that store multiple values of the same type (all numbers or all words). Most of the time, we want to work with data that have multiple variables - we call this **multidimensional data**. In R, we use **data frames** to store multidimensional data.
 
-In R language, a data frame is an object containing multiple vectors of the same length. The values in a given vector are all the same type, but the vectors may each hold a different type of value. In common language, a data frame is a collection of variables (columns). Each variable contains the same number of observations (rows).
+In R language, a data frame is an object containing multiple vectors of the same length. The values in a given vector are all the same type, but the vectors may each hold a different type of value. In everyday language, a data frame is a collection of variables (columns). Each variable contains the same number of observations (rows).
 
 ![](https://r4ds.hadley.nz/images/tidy-1.png "Test")
 
 Figure: diagram of a data.frame showing variables as columns, observations as rows, and values as cells. Source: [Wickham, Cetinkaya-Rundel and Grolemund. 2023. R for Data Science (2e)](https://r4ds.hadley.nz/data-tidy.html#fig-tidy-structure)
 
-### 🥊Challenge 1: Your own data
+### 🥊Challenge 2: Your own data
 
 Think of an example of data you have worked with or would like to work with. What are the variables? What are the observations? Are there any research questions that you would use this data to answer?
 
@@ -81,7 +116,7 @@ After importing data, the first thing to check is if the data looks like you exp
 head(gap)
 ```
 
-### 🥊Challenge 2: Import a csv file and explore the data
+### 🥊Challenge 3: Import a csv file and explore the data
 
 Clear the global environment (hint: if you can't remember the function to do this, you can use the broom icon). Read in the Gapminder data saved in the Data directory and save it to an object called **gap**.
 
@@ -194,7 +229,7 @@ variables <- c("pop" , "year", "lifeExp")
 gap[ , variables]
 ```
 
-### 🥊Challenge 3: Subsetting columns
+### 🥊Challenge 4: Subsetting columns
 
 Extract three variables of your choice from the gap data frame. Thinking back to Part 1 when we learned the assignment operator `<-`. See if you can assign these three extracted variables to a new data frame called **gap_subset**.
 
@@ -249,104 +284,10 @@ head(gap_subset)
 
 ### 🥊Challenge 4: Select columns using tidyverse
 
-Use the `select()` function from `tidyverse` to select three variables from the gap data frame. Assign those three variables to a new data frame. Check the dimensions of your new data frame.
+Use the `select()` function from `tidyverse` to select three variables from the gap data frame. Assign those three variables to a new data frame. Check the dimensions of your new data frame using the `dim()` function.
 
 ```{r}
 
-
-
-
-```
-
-## Filtering data frames
-
-If we open up the **gap** data frame (click on the gap object in the Global Environment panel), we see a **Filter** button. This allows us to subset the data frame by rows. We can specify that we want to only show rows for Pakistan or only show rows in the year 1992. We can achieve the same thing by writing code.
-
-### Conditional Statements
-
-In order to specify what rows we want to subset, we need to write **conditional statements** that specify which rows we want. Conditional statements check whether something is true or false. To write them, we need to use **logical operators**:
-
--   `>` bigger than
-
--   `<` less than
-
--   `==` equals to (note the double equal signs)
-
--   `!=` not equal to
-
--   `%in%` is in
-
-```{r}
-# check whether the average population is bigger than 5 million 
-mean(gap$pop) > 5000000
-
-# check whether the minimum year is less than or equal to 1950?
-min(gap$year) <= 1950
-
-# check if there are exactly 6 variables in the gap data
-length(names(gap)) == 6
-```
-
-We can use the same logical operators to filter (subset) the rows in our data. We will use the function `filter` from `tidyverse`.
-
-```{r}
-# look up the documentation for filter
-?filter
-
-# return all rows for Pakistan
-filter(gap, country == "Pakistan")
-
-# return all rows where the life expectancy is bigger than 80
-filter(gap, lifeExp > 80)
-```
-
-We can also combine conditional statements using the `&` and `|` (or) operators.
-
-```{r}
-# return all rows in Asia with a GSP per capita above or equal to 30K
-filter(gap, continent == "Asia" & gdpPercap >= 30000)
-
-# return all rows in Germany or France
-filter(gap, country == "Germany" | country == "France")
-
-# return all rows in Mexico but not from the year 2007
-filter(gap, country == "Mexico" & year != 2007)
-```
-
-### Piping
-
-We can combine our `select` and `filter` commands to subset both columns and rows. An intuitive way to write code that combines multiple functions is to write multiple lines of code that feed into each other. We do this with the pipe operator `%>%` from `tidyverse`. The `%>%` operator takes the output on the left hand side and passes it into the function on the right hand side.
-
-```{r}
-# start with the gap data set
-gap %>%
-  # filter to Mexico - note, we don't need to specify gap inside select() any more
-  filter(country == "Mexico") %>%
-  # select the columns we want to return
-  select(country, year, pop, lifeExp) 
-
-```
-
-We can assign the subset of our original data frame to a new data frame.
-
-```{r}
-# save Mexico rows to another data frame
-data_mexico <- gap %>%
-  # filter to Mexico
-  filter(country == "Mexico") %>%
-  # select the columns we want to return
-  select(country, year, pop, lifeExp) 
-
-dim(data_mexico)
-```
-
-💡 If you have R 4.1 or higher, there is now a base R pipe operator `|>` , which works the same as `%>%` but does not need `tidyverse` to have been loaded.
-
-### 🥊 Challenge 5: Combining filter and select
-
-Start with the gap data frame. Use the `%>%` operator and the functions `select()` and `filter`. Subset the data to countries in Asia or Oceania that have a life expectancy above 60, and select the country, year, life expectancy, and GDP per capita variables. Assign your subsetted data to a new data frame called **gap_subset**.
-
-```{r}
 
 
 
@@ -354,32 +295,23 @@ Start with the gap data frame. Use the `%>%` operator and the functions `select(
 
 ## 🎬Next time...
 
-Selecting and filtering data are frames are key steps in telling stories from our data. Looking at summary statistics and visualization are the next steps for understanding our data and presenting it to other people.
+As well as subsetting columns, we can also subset rows. To do this, we use **conditional statements** to tell R which rows we want to return.
 
 🔔 Run the chunk of code below. What do you think we are doing?
 
 ```{r}
 gap %>%
   filter(year == 2007 | year == 1952) %>%
-  select(gdpPercap, lifeExp, continent, year) %>%
-  ggplot(aes(x = lifeExp, y = log(gdpPercap), color = continent, shape = continent)) +
-  geom_point() +
-  facet_wrap(~year) +
-  ggtitle("Relationship between Life Expectancy and GDP per capita") +
-  ylab("GDP per capita (logged)") +
-  xlab("Life Expectancy (years)") +
-  theme_bw() 
+  select(gdpPercap, lifeExp, continent, year) 
 
 ```
 
 ## Key Points
 
--   All types of data files can be read into R and saved as **data frames**
+-   Many types of data files can be read into R and saved as **data frames**
 
 -   Variables can be different classes (type), common classes are **numeric**, **integers** and **characters**
 
 -   In **base R**, use indexing to subset the data by specifying the rows and columns we want in square brackets
 
--   In **tidyverse**, use `filter()` to limit to specific rows and `select()` to select variables
-
--   The pipe operator `%>%` is a way to pass output from one line of code to the next line of code
+-   In **tidyverse**, use `select()` to select variables

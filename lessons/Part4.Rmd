@@ -5,13 +5,13 @@ output: html_notebook
 
 ## Learning Objectives
 
-Welcome to Part 4 of the R Fundamentals series. Our goals for today's workshop are: \<UPDATE THESE\>
+Welcome to Part 4 of the R Fundamentals series. Our goals for today's workshop are:
 
-1.  Recall what a vector is and define a data frame
+1.  Think through ways to visualize our data
 
-2.  Use read.csv to import data
+2.  Use `ggplot` to create a boxplot and scatter plot
 
-3.  Use code to subset variables and rows in a data frame
+3.  Learn about custom functions
 
 Throughout this workshop series, we will use the following icons:
 
@@ -45,7 +45,7 @@ Load in `data/gapminder.csv` using the `read.csv()` function from earlier worksh
 
 ```
 
-## Visualizing Data 
+## Visualizing Data
 
 In Part 3 we used `summary()`, `table()`, and `mean()` to learn some things from our data. For example:
 
@@ -88,7 +88,7 @@ gap %>%
 
 **🔔 What are some things we learn from this plot?**
 
-### ggplot 
+### ggplot
 
 `ggplot` is a package from `tidyverse` that helps create highly customizable plots, all of which have the same syntax underlying them.
 
@@ -156,6 +156,8 @@ Explore the variables in the `gap` data frame. What other questions could we ask
 
 -   Q: ... A: ...
 
+💡 A helpful way to learn how to create many different types of plots is to look at a [gallery](https://r-graph-gallery.com/index.html) of possible plots in R.
+
 ## Scatter plots
 
 Box plots are good for looking at the distribution of a single continuous variable (eg. life expectancy) and showing that for different groups (eg. continents). To show the relationship between two continuous variables a scatter plot is better. For example, **has life expectancy increased with time in Oceania?**
@@ -209,7 +211,7 @@ gap %>%
 
 💡`ggplot` can be used to create many different plots ([here](https://r-graph-gallery.com/index.html) are some examples with the underlying code). To learn more about using `ggplot` you can take D-Lab's [R Data Visualization](https://github.com/dlab-berkeley/R-Data-Visualization).
 
-## For-loops
+## Custom Functions
 
 Often times, we want to do the same thing over and over again in our code but with minor changes. For example, we might want to plot the life expectancy against GDP per capita for multiple continent in our data.
 
@@ -242,153 +244,143 @@ gap %>%
 
 **🔔 What is wrong with the plot above? Have we made a mistake?**
 
-Instead of copying and pasting code, we can instead put the code into a **for-loop** and loop over the list of continents. For-loops are built on the idea of "iteration". We iterate through a procedure, with some counter keeping track of how far along the overall procedure we are. The structure of a for-loop is as follows:
+Instead of copying and pasting code, we can instead put the code into a **function** and call the function whenever we want to create the plot for different continents.
+
+We have used many functions that are part of base R or `tidyverse`, for example `head()`, `length()`, `summary()` etc. Custom functions are the same but we define the name of the function, what the input is, and what the output is.
+
+The structure of a custom function is:
 
 ```{r}
 # # structure of code
-# for(variable in sequence) {
+# function_name <- function(optional arguments){
 #   
-#   statement
+#   code
 # 
 # }
 
 # example
-for (i in 1:5){
+print_number <- function(x){
   
-  print(paste("The number is:", i))
+  paste0("My number is: ", x)
   
 }
 
+print_number(1)
+print_number(5)
+
 ```
 
-For-loops in R have four main components:
+Custom functions in R have four main components:
 
-1.  The `for` keyword: this keyword tells R that you want to iterate over a loop.
+1.  The `function` keyword: this keyword tells R that we are defining a function
 
-2.  The **sequence**: this tells R what values we want to iterate (or loop) over. In the example, we are iterating over the sequence `c(1, 2, 3, 4, 5)`. It doesn't have to be a sequence of number, it could also be strings eg. continents in our dataset.
+2.  The **arguments**: these are the inputs to the function that change. In the example, our argument was a variable `x` that we can make any number we want. Functions can have multiple arguments and they can be any class of object.
 
-3.  The **iterator**: this is the variable that moves through the sequence and takes on each value in turn. In this example, `i` is the iterator. In the first iteration `i = 1`, in the second `i = 2`, and so on. The iterator can be called anything, though `i` is common.
+3.  The **code**: this is the code that the function executes each time it is called. In our example, we just have a single line of code pasting together the sentence "My number is" with the argument `x`. The code in a function can be as long as needed.
 
-4.  Loop body: the curly braces define what code is run in each loop. Anytime the iterator `i` shows up in this code, it will be replaced by the current value of `i` as defined by the sequence.
+4.  The **output**: by default, a function returns the last thing that was outputted by the code. It is good practice to add a `return()` statement, in which you put the explicit thing you want outputted.
 
-💡 You can always tell how many times a loop will run by finding the length of the sequence. In this case, `i` takes on 5 values from 1 to 5, so the loop runs 5 times.
+💡`paste0` concatenates things together into a single string/sentence. It is a helpful function to use inside custom functions.
 
-You can also iterate over sequences that are not numeric.
+Here is another example for a custom function that returns the average life expectancy of each continent.
 
 ```{r}
-# make a list of the continents in our data
-continent_list <- unique(gap$continent)
-
-for (i in continent_list){
-# everytime we would have written the continent, we now write i
-    
-  # limit to continent i
-  gap_subset <- gap %>%
-    filter(continent == i)
+continent_lifeexp <- function(cont){
   
+  # it is good practice to comment what the function does and what it's arguments are at the top:
+  # function to return life expectancy of continent
+  # cont = name of continent, string
+  
+  # everytime we would have written the continent, we now write 'cont'
+  # limit to continent cont
+  gap_subset <- gap %>%
+    filter(continent == cont)
+
   # save the mean life expectancy for that continent
   lifeexp_mean <- mean(gap_subset$lifeExp)
   
-  # print out a statement
-  print(paste0("The mean life expectancy in ", i, " is ", lifeexp_mean))
-  
-}
-```
-
-💡`print()` and `paste0()` are really helpful functions when writing code that uses for-loops or functions (more below). `paste0` concatenates things together into a single string/sentence and `print()` prints it out.
-
-### 🥊Challenge 5: Write a for loop
-
-Make a list of all the years in our data using the `unique()` function and save it to `year_list`. Write a for-loop that iterates over the list of years and prints out the average GDP per capita in that year. Use the code above to help.
-
-```{r}
-
-
-
-
-
-
-```
-
-### For-loops with ggplot 
-
-Returning to our example, we can loop over the continents in our data set and output a plot for each continent.
-
-```{r}
-# first, define the sequence of continents
-continent_list <- unique(gap$continent)
-continent_list
-
-# second, write the for-loop 
-for (c in continent_list){
-  
-  # everytime we would have written the continent, we now write c 
-  p <- gap %>%
-    filter(continent == c) %>%
-    ggplot(aes(x = gdpPercap, y = lifeExp)) +
-    geom_point() +
-    # here we use the paste0() function to allow c to change 
-    ggtitle(paste0("Life expectancy against GDP per capita in ", c)) +
-    ylab("Life expectancy (years)") +
-    xlab("GDP per capita (dollars)") +
-    theme_bw()
-  
-  print(p)
-  
+  # return the life expectancy
+  return(paste0("The average life expectancy in ", cont, " is ", lifeexp_mean))
+    
 }
 
 ```
 
-## 🎬Functions instead of for-loops
-
-For-loops are great for iterating over sequences - they speed up coding and make code less prone to errors. However, we can't easily retrieve the output from a previous loop or change multiple things about the plot (what if we wanted to change both the continent *and* the year)? We can do this by writing a custom function.
-
-We have used many functions, such as `summary()` , `read.csv()` and `ggplot()`. All of them took an input (or multiple inputs), did something to that input, and returned an output. Custom functions are functions we define ourselves and save within our R session. Functions look similar to for-loops, but rather than iterating over a sequence, they can be called at any time and take multiple inputs.
-
-For example, rather than iterating over a list of continents, we can write a function that takes the continent name as an input, and outputs a plot showing GDP per capita versus life expectancy for that continent.
+Running this chunk of code does not run the code inside the function. It saves a function called `continent_lifeexp()`, which now appears in our global environment and can be called at any time in our session.
 
 ```{r}
-# function that plots the life expectancy vs GDP per capita for a given continent 
+# run the function for different continents
+continent_lifeexp("Asia")
+continent_lifeexp("Americas")
+```
 
-life_gdp_plot <- function(c){
+### 🥊Challenge 5: Write a custom function
+
+Write a function that filters the gap data set to a specific year. Then estimate the average GDP per capita in that year. Make your function so you can input a different year and the functions outputs the average GDP per capita for that year. Use the code above as a template.
+
+💡When writing functions, it is helpful to make sure the inside code does what you want it to without error before including it in the function. To do this, write the code as you would not in a function, check it works, then replace any year values with the arugments that you use for year.
+
+```{r}
+
+
+
+
+
+
+```
+
+### Functions with ggplot
+
+Returning to our example, we can create a function that takes the name of the continent as an argument and outputs plot of life expectancy against GDP for each continent.
+
+```{r}
+
+gdp_lifeexp_plot <- function(cont){
   
-  # arguments:
-  # c = continent name (string)
-  
+  # function plot life exectancy against GDP per capita by continent 
+  # cont = name of continent, string
+
+  # everytime we would have written the continent, we now write cont 
   p <- gap %>%
-    filter(continent == c) %>%
+    filter(continent == cont) %>%
     ggplot(aes(x = gdpPercap, y = lifeExp)) +
     geom_point() +
-    # here we use the paste0() function to allow c to change 
-    ggtitle(paste0("Life expectancy against GDP per capita in ", c)) +
+    # here we use the paste0() function to allow cont to change in the title
+    ggtitle(paste0("Life expectancy against GDP per capita in ", cont)) +
     ylab("Life expectancy (years)") +
     xlab("GDP per capita (dollars)") +
     theme_bw()
   
+  # return the plot so it prints out when we call the function
   return(p)
   
 }
 
-
 ```
 
-Running this chunk of code does not run the code inside the function. It saves a function called `life_gdp_plot()`, which now appears in our global environment and can be called at any time in our session.
+Now we have a function called `gdp_lifexp_plot()` in our global environment. We can call it at any time and provide different continent names.
 
 ```{r}
 
-# execute the function for continent = Oceania 
-life_gdp_plot("Oceania")
-
-```
-
-```{r}
-# execute the function for continent = Europe
-life_gdp_plot("Europe")
+gdp_lifeexp_plot("Africa")
+gdp_lifeexp_plot("Europe")
 
 ```
 
 Functions are a great tool for improving your code, especially when you find yourself copying and pasting code. To read more about functions we recommend the [Functions chapter in R for Data Science](https://r4ds.hadley.nz/functions.html).
 
-## Wrap Up 
+## Key Points
 
-In this four part workshop you have learned:
+-   Using plots to visualize data is a great way to convey information and find patterns in your data
+
+-   `ggplot` is a great for creating plots
+
+-   Custom functions are used to make your code easier to write and less error prone - anytime you are copying and pasting chunks of code, consider putting it in a custom function and calling that function when you need to
+
+## Next steps...
+
+Congratulations on finishing D-Lab's R Fundamentals Series. If you would like to continue learning more R, we recommend taking the following workshops, which build on the skills learned in this workshop series.
+
+1.  [R Data Wrangling](https://github.com/dlab-berkeley/R-Data-Wrangling) - learn more `tidyverse()` commands, including how to create summary statistics by groups and to re-shape data
+
+2.  [R Data Visualization](https://github.com/dlab-berkeley/R-Data-Visualization) - learn more `ggplot()` tools and create a wide array of different data visualizations

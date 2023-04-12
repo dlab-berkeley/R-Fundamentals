@@ -126,6 +126,16 @@ lifeexp <- 76.2
 
 ⚠️ We will talk about different types of variables (numeric, characters, categorical) in Part 2.
 
+### 🥊Challenge 2: Creating variables
+
+Create a variable called continent and assign it the value "Americas". Create variable called pop and assign it the value 4.5.
+
+```{r}
+
+
+
+```
+
 All variables created show up in the Global Environment (top right panel).
 
 ```{r}
@@ -167,7 +177,7 @@ ls()
 
 💡`ls()` and `rm()` are both **functions**, which are commands that generate some output. We will learn several functions across the workshop. The best way to learn and remember functions in R is it to Google them!
 
-### 🥊Challenge 2: Creating variables
+### 🥊Challenge 3: Creating variables from other variables
 
 Pick a country. Look up it's population and create a variable which stores the population. Now look up the GDP (Gross Domestic Product) and create another variable which stores the GDP. Can you use these two variables to create a third variable which stores the GDP per capita (GDP divided by population)?
 
@@ -208,11 +218,12 @@ pop_mexico*1000000
 pop_mexico + 2
 ```
 
-### 🥊Challenge 3: Manipulating vectors
+### 🥊Challenge 4: Manipulating vectors
 
 The code above didn't permanently change the values in our population vector. Re-write the code above so that the population vector is an additional 2 million people in each year.
 
 ```{r}
+
 
 
 ```
@@ -225,30 +236,14 @@ As well as mathematical operations, we can apply functions to vectors, for examp
 # look up how to use the function length
 ?length
 
+```
+
+🛎️ What is the length of the `pop_mexico` vector?
+
+```{r}
 # check the length of our population vector 
 length(pop_mexico)
 ```
-
-### 🥊Challenge 4: Multiple ways to create vectors
-
-There are multiple ways to create vectors. For this challenge, create a vector storing the 5 years we recorded the Mexico population for (2018 to 2022). Create the vector in three different ways:
-
-1.  Using the `c()` function
-
-2.  Using the `seq()` function - we haven't used this yet so you will need to look up the help page (hint: use `?seq`)
-
-3.  Using the `:` operator (colon operator) - we also haven't used this yet but you can look up the help page with `?colon` or Google how to use it (sometimes help pages are less helpful)
-
-Check that the three vectors you create are the same length.
-
-```{r}
-
-
-
-
-```
-
-💡 It's okay to try out functions and operators and get things wrong! Interpreting error messages and debugging code is the bread and butter of coding.
 
 ## 🎬Next time...
 
@@ -278,6 +273,6 @@ gap[gap$country == "Mexico", c("country", "year", "pop")]
 
 -   Vectors store multiple values as long as they're the same type
 
--   We used the following functions: `ls()`, `rm()`, `c()`, `length()`, and `seq()`. To see how to use them use **?** followed by the function name (or Google them)
+-   We used the following functions: `ls()`, `rm()`, `c()`, and `length()`. To see how to use them use **?** followed by the function name (or Google them)
 
 ## 
