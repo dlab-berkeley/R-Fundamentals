@@ -8,22 +8,17 @@ This repository contains the materials for D-Lab's R Fundamentals workshop. No p
 
 This interactive workshop series is your complete introduction to programming in R for people with little or no previous programming experience. It covers the basics of using RStudio, creating variables, working with data frames, and starting to analyse your data using summary statistics and data visualization.
 
+## Learning Objectives
+
 After completing this workshop series you will be able to:
-
 -   Navigate R Studio
-
 -   Open data in R and work with it in data frames using **tidyverse**
-
 -   Distinguish between different variable types
-
 -   Visualize data using **ggplot**
-
 -   Inspect documentation to deal with error messages
 
 This workshop does **not** cover the following:
-
 -   Advanced data manipulation and cleaning - this is covered in [R Data Wrangling](https://github.com/dlab-berkeley/R-Data-Wrangling)
-
 -   Extensive data visualization - this is covered in [R Data Visualization](https://github.com/dlab-berkeley/R-Data-Visualization)
 
 ## Workshop Structure
@@ -31,12 +26,9 @@ This workshop does **not** cover the following:
 R Fundamentals has 4 parts. Each of the parts takes 2 hours, and is delivered in a lecture-style coding walk through interrupted by challenge problems and a break. Instructors and TAs are dedicated to engaging you in the classroom and answering questions in plain language.
 
 1.  Part 1: Introduction to R and R Studio
-
 2.  Part 2: Data frames and variable types
-
-3.  Part 3: Subsetting data and summary statistics
-
-4.  Part 4: Data visualizations and for-loops
+3.  Part 3: Manipulating data frames
+4.  Part 4: Data visualizations and custom functions
 
 ## Installation Instructions
 
