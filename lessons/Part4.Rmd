@@ -1,5 +1,5 @@
 ---
-title: "R Fundamentals - Part 3 of 4: Data Frames"
+title: "R Fundamentals - Part 4 of 4: Visualization and functions"
 output: html_notebook
 ---
 
@@ -22,6 +22,8 @@ Throughout this workshop series, we will use the following icons:
 ⚠️ **Warning**: Heads-up about tricky stuff or common mistakes.
 
 💡 **Tip**: How to do something a bit more efficiently or effectively.
+
+📝 **Poll**: A zoom poll to help you learn.
 
 🎬 **Demo**: Showing off something more advanced so you know what you can use R for in the future
 
@@ -86,7 +88,7 @@ gap %>%
   
 ```
 
-**🔔 What are some things we learn from this plot?**
+**📝 Poll RFun 4-1:** What are some things we learn from this plot?
 
 ### ggplot
 
@@ -185,7 +187,7 @@ gap %>%
   geom_point()
 ```
 
-**🔔 What can we add to the plot to make it more informative?**
+📝 **Poll RFun 4-2**: What can we add to the plot to make it more informative and easier to read? Answer in the zoom poll and we'll try out the suggestions.
 
 ```{r}
 
@@ -384,3 +386,5 @@ Congratulations on finishing D-Lab's R Fundamentals Series. If you would like to
 1.  [R Data Wrangling](https://github.com/dlab-berkeley/R-Data-Wrangling) - learn more `tidyverse()` commands, including how to create summary statistics by groups and to re-shape data
 
 2.  [R Data Visualization](https://github.com/dlab-berkeley/R-Data-Visualization) - learn more `ggplot()` tools and create a wide array of different data visualizations
+
+📝 It would be great to hear your feedback on some of the things we've trialed in this Pilot Workshop! Please answer some questions in the zoom poll.

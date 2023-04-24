@@ -23,6 +23,8 @@ Throughout this workshop series, we will use the following icons:
 
 💡 **Tip**: How to do something a bit more efficiently or effectively.
 
+📝 **Poll**: A zoom poll to help you learn.
+
 🎬 **Demo**: Showing off something more advanced so you know what you can use R for in the future
 
 Before we get started, lets load in the `tidyverse` package that we used in Part 2. We will use this today for subsetting our data and for making plots.
@@ -64,7 +66,7 @@ In order to specify what rows we want to subset, we need to write **conditional 
 
 -   `%in%` is in
 
-**🛎️ Answer in the poll whether the following statements are TRUE or FALSE?**
+📝 **Poll RFun 3-1:** Are the following statements TRUE or FALSE? Answer in the Zoom poll.
 
 ```{r}
 # check whether the average population is bigger than 5 million 
@@ -219,14 +221,14 @@ summary(gap$gdpPercap)
 
 ```
 
-**🔔 Do any of the other variables contain missing values? Edit the code below to find out and answer in the poll.**
+📝 **Poll RFun 3-2**: Which variables contain missing values? Do any of the other variables contain missing values? Edit the code below to find out and answer in the poll.
 
 ```{r}
 # see what variables we have
 names(gap)
 
 # check which ones are missing by changing the variable after $
-is.na(gap$year) %>% 
+is.na(gap$...) %>% 
   sum()
 ```
 
@@ -249,9 +251,11 @@ summary(gap$gdpPercap)
 
 ⚠️ Some functions ignore `NA` values by default and some do not. The function documentation will tell you what the default behavior is , or you can find out with trial and error.
 
-### 🥊Challenge 5: Dropping missing values
+### Filtering missing values
 
-We might want to drop the missing values from our data entirely. We can combine `filter()` and `is.na()` to remove rows that contain missing values. Try out the code in the poll and choose the option(s) that drop all the rows with missing values for `gdpPercap`.
+We might want to drop the missing values from our data entirely. We can combine `filter()` and `is.na()` to remove rows that contain missing values.
+
+📝 **Poll RFun 3-3:** Try out the code in the poll and choose the option(s) that drop all the rows with missing values for `gdpPercap`.
 
 Reminder: `filter()` takes a conditional statement, checks if it's true, and then **keeps** all rows that the statement is true for. We want to keep all rows where there are **no** missing values for `gdpPercap`.
 
@@ -260,12 +264,16 @@ Reminder: `filter()` takes a conditional statement, checks if it's true, and the
 gap_nomissing <- gap %>%
   filter(...)
 
-# check how many rows we've dropped
-dim(gap)
-dim(gap_nomissing)
+# the code below subtracts the number of rows in gap_nonmiss from number of rows in gap - this is how many rows filter() dropped
+nrow(gap)-nrow(gap_nomissing)
+
+```
+
+```{r}
 
 # check if we have any missing values for gdpPercap
 summary(gap_nomissing$gdpPercap)
+
 ```
 
 ⚠️When dropping missing values it drops the entire row of data that contained those missing values. This means we loose cells that had non-missing values for other variables. Choosing whether to drop the row entirely or using functions that ignore missing values will depend on what you're trying to do in your data cleaning and analysis.

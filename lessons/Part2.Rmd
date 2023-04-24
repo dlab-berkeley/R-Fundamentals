@@ -23,6 +23,8 @@ Throughout this workshop series, we will use the following icons:
 
 💡 **Tip**: How to do something a bit more efficiently or effectively.
 
+📝 **Poll**: A zoom poll to help you learn.
+
 🎬 **Demo**: Showing off something more advanced so you know what you can use R for in the future
 
 ## Vector recap
@@ -39,6 +41,13 @@ We can also use the `seq()` function to create vectors.
 ```{r}
 # look at the seq() help page
 ?seq
+seq(2018, 2022)
+
+```
+
+📝 **Poll RFun 2-1:** Looking at the seq() help page, which code is correct for creating a vector with the years 2018 to 2022? Try out the code below and answer in the Zoom poll.
+
+```{r}
 
 # try using seq() to create the same vector as above, called years_v2
 years_v2 <- ...
@@ -72,19 +81,15 @@ Figure: diagram of a data.frame showing variables as columns, observations as ro
 
 ### 🥊Challenge 2: Your own data
 
-Think of an example of data you have worked with or would like to work with. What are the variables? What are the observations? Are there any research questions that you would use this data to answer?
-
-**Variables =** ...
-
-**Observations =** ...
-
-**Research problems =** ...
+Think of an example of data you have worked with. What are the observations (the unit of measurement)? What are the variables (the information being measured)? **Write your answer in the chat, but don't hit send until I say go...**
 
 ⚠️Data frames are not the only way to store multidimensional data in R - but they are the most common and easiest to work with.
 
 ## Import data
 
 You can create a data frame in R and fill it with values. Normally though, you **import** data and save it as a data frame. You can import many different types of files into R (eg. excel sheets, csv files, dta files). Today we will import a csv file.
+
+📝 **Poll RFun 2-2:** What file type does the data you work with usually come in?
 
 ```{r}
 # import csv file 
@@ -191,6 +196,15 @@ Overall there are five classes of data:
 5.  **factor**: nominal or ordinal categorical type
 
 ⚠️ We have learned the first three classes. We will encounter **logicals** and **factors** later in the series.
+
+📝 **Poll RFun 2-3**: Use the function `class()` on each of the following variables and match them with their class: `continent`, `lifeExp`, `gdpPercap`, `year`
+
+```{r}
+
+class(...)
+
+
+```
 
 ## Subsetting data frames
 
