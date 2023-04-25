@@ -92,7 +92,7 @@ R is a programming language designed for **data analysis**. R is great for data 
 
 R is **not** a general purpose programming language. If you want to do something like build a website or train a machine learning model, languages such as [Python](https://github.com/dlab-berkeley/Python-Fundamentals-Pilot) are better suited for these tasks.
 
-📝 **Poll RFun 1-1:** What tasks would you like to use R for? How do you envision using R in your research or class projects?
+🔔 What tasks would you like to use R for? How do you envision using R in your research or class projects? **Put your answer in the chat.**
 
 ## Creating Variables
 
