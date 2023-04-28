@@ -1,6 +1,6 @@
 # D-Lab's R Fundamentals Workshop
 
-[![Datahub](https://img.shields.io/badge/launch-datahub-blue)](https://dlab.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fdlab-berkeley%2FR-Fundamentals-Pilot&urlpath=rstudio%2F&branch=main) [![Binder](http://mybinder.org/badge.svg)](BINDER_LINK_HERE)
+[![Datahub](https://img.shields.io/badge/launch-datahub-blue)](https://dlab.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fdlab-berkeley%2FR-Fundamentals-Pilot&urlpath=rstudio%2F&branch=main) [![Binder](http://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/dlab-berkeley/R-Fundamentals-Pilot/HEAD?urlpath=rstudio)
 
 This repository contains the materials for D-Lab's R Fundamentals workshop. No prior experience with R is required.
 
@@ -64,7 +64,7 @@ The DataHub downloads this repository, along with any necessary packages, and al
 
 If you don't have a Berkeley CalNet ID, you can still run these lessons in the cloud, by clicking this button:
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/dlab-berkeley/R-Fundamentals/HEAD?urlpath=rstudio)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/dlab-berkeley/R-Fundamentals-Pilot/HEAD?urlpath=rstudio)
 
 If you are loading Binder with this repository for the first time, it may take a few minutes to set up. Binder operates similarly to the D-Lab DataHub, but on a different set of servers. By using Binder, however, you cannot save your work.
 
