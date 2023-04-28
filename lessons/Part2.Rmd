@@ -41,7 +41,6 @@ We can also use the `seq()` function to create vectors.
 ```{r}
 # look at the seq() help page
 ?seq
-seq(2018, 2022)
 
 ```
 
@@ -296,7 +295,7 @@ head(gap_subset)
 
 💡If you want to learn how to use tidyverse in more detail, you can check out D-Lab's [R Data Wrangling and Manipulation](https://github.com/dlab-berkeley/R-Data-Wrangling) workshop series.
 
-### 🥊Challenge 4: Select columns using tidyverse
+### 🥊Challenge 5: Select columns using tidyverse
 
 Use the `select()` function from `tidyverse` to select three variables from the gap data frame. Assign those three variables to a new data frame. Check the dimensions of your new data frame using the `dim()` function.
 

@@ -51,7 +51,9 @@ Load in `data/gapminder.csv` using the `read.csv()` function from earlier worksh
 
 In Part 3 we used `summary()`, `table()`, and `mean()` to learn some things from our data. For example:
 
-### 🥊Challenge 2: What is the average life expectancy in our data? How much does life expectancy range?
+### 🥊Challenge 2:  Summary statistics
+
+What is the average life expectancy in our data? How much does life expectancy range?
 
 ```{r}
 

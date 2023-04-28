@@ -393,7 +393,7 @@ continent_pop <- ...
 
 ```
 
-🔔The code above contains functions we haven't used yet. What do you think `group_by()` and `summarize()` are doing? If we instead wanted to the total population for each `country` in 2007, what should we change?
+🔔The code above contains functions we haven't used yet. What do you think `group_by()` and `summarize()` are doing? If we instead wanted the total population for each `country` in 2007, what should we change?
 
 ⚠️ We create factor versions of our `continent` variable outside of the gap data frame. To create new variable or modify existing variables in a data frame we can use the `mutate()` function from **tidyverse**. This is beyond this workshop but is covered in [R Data Wrangling](https://github.com/dlab-berkeley/R-Data-Wrangling).
 
