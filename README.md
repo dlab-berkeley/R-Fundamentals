@@ -1,6 +1,6 @@
 # D-Lab's R Fundamentals Workshop
 
-[![Datahub](https://img.shields.io/badge/launch-datahub-blue)](DATAHUB_LINK_HERE) [![Binder](http://mybinder.org/badge.svg)](BINDER_LINK_HERE)
+[![Datahub](https://img.shields.io/badge/launch-datahub-blue)](https://dlab.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fdlab-berkeley%2FR-Fundamentals-Pilot&urlpath=rstudio%2F&branch=main) [![Binder](http://mybinder.org/badge.svg)](BINDER_LINK_HERE)
 
 This repository contains the materials for D-Lab's R Fundamentals workshop. No prior experience with R is required.
 
@@ -56,7 +56,7 @@ RStudio is a software commonly used by R practitioners to develop code in R. We 
 
 If you do not have R installed and the materials loaded on your workshop by the time it starts, we *strongly* recommend using the UC Berkeley DataHub to run the materials for these lessons. You can access the DataHub by clicking the following button:
 
-[![DataHub](https://img.shields.io/badge/launch-datahub-blue)](https://dlab.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fdlab-berkeley%2FR-Fundamentals&urlpath=rstudio%2F&branch=main)
+[![DataHub](https://img.shields.io/badge/launch-datahub-blue)](https://dlab.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fdlab-berkeley%2FR-Fundamentals-Pilot&urlpath=rstudio%2F&branch=main)
 
 Some users may have to click the link twice if the materials do not load initially.
 
