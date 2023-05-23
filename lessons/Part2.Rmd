@@ -9,9 +9,9 @@ Welcome to Part 2 of the R Fundamentals series. Our goals for today's workshop a
 
 1.  Recall what a vector is and define a data frame
 
-2.  Use read.csv to import data
+2.  Learn what functions are and how to use them
 
-3.  Use functions from the `tidyverse` package to subset variables in a data frame
+3.  Use read.csv to import data
 
 Throughout this workshop series, we will use the following icons:
 
@@ -36,33 +36,89 @@ In Part 1 we learned how to create vectors using the `c()` function.
 years <- c(2018, 2019, 2020, 2021, 2022)
 ```
 
-We can also use the `seq()` function to create vectors.
+We can perform mathematical operations to the elements in the vector.
 
 ```{r}
-# look at the seq() help page
-?seq
+# population in Mexico from 2018-2022 in millions
+pop_mexico <- c(123, 124, 125, 126, 127)
+
+# show it in 100,000s
+pop_mexico*10
+
+# add 2 to each element
+pop_mexico + 2
 
 ```
 
-📝 **Poll RFun 2-1:** Looking at the seq() help page, which code is correct for creating a vector with the years 2018 to 2022? Try out the code below and answer in the Zoom poll.
+### 🥊Challenge 1: Manipulating vectors
+
+The code above didn't permanently change the values in our population vector. Re-write the code above so that the population vector is an additional 2 (million) people in each year.
 
 ```{r}
+
+
+
+```
+
+## Functions
+
+As well as mathematical operations, we can apply **functions** to vectors, for example the function `length()`.
+
+```{r}
+length(pop_mexico)
+```
+
+More generally, functions are commands that take an input and return some output. They are identified by the trailing brackets. Inside the brackets go:
+
+1.  **input** - the thing that the function is doing something to
+
+2.  **arguments** - modifications we make to the function (the first argument is usually the input)
+
+🔔 What is the **input** for the `length()` function?
+
+```{r}
+length(pop_mexico)
+
+```
+
+⚠️ Not all functions have inputs or arguments - for example, the `ls()` function doesn't require an input but still gives us an output.
+
+```{r}
+ls()
+
+```
+
+We can modify functions by changing the **arguments** in the function. The function `seq()` has several arguments, which we can look at in the help page.
+
+```{r}
+# look up what the seq() functions does and what arguments it uses
+?seq
+
+
+```
+
+📝 **Poll RFun 2-1:** Looking at the seq() help page, which code is correct for creating a vector with the years 2018 to 2022? Try out the code in the poll below and answer in the Zoom poll.
+
+```{r}
+
+# years vector using c()
+years <- c(2018, 2019, 2020, 2021, 2022)
 
 # try using seq() to create the same vector as above, called years_v2
 years_v2 <- ...
 
 ```
 
-### 🥊Challenge 1: Another way to create vectors
+```{r}
+# check that the two population vectors are the same length
+length(years)
+length(years_v2)
+```
 
-A third way to create a vector is using the `:` operator (colon operator). Look up the help page with `?colon` or Google how to use it (sometimes help pages are less helpful). Create a vector called `years_v3` that is the years 2018 to 2022 using the `:` operator.
-
-Check that the three vectors we've created are the same length.
+A third way to create a vector is using the `:` operator (colon operator).
 
 ```{r}
-
-years_v3 <- ...
-
+years_v3 <- c(2018:2022)
 
 ```
 
@@ -223,11 +279,13 @@ years[5]
 years[12]
 ```
 
-Because data frames are two dimensional, we need to specify the rows and the columns we want. The format is always: **data.frame[rows, columns]**. By leaving either rows or columns blank, that selects all of them.
+Because data frames are two dimensional, we can specify the rows and the columns we want. The format is: **data.frame[rows, columns]**. By leaving either rows or columns blank, that selects all of them.
+
+To extract a single variable, we specify the variable name withing the square brackets. This returns all the rows but only one column.
 
 ```{r}
-# extract a single variable using the indexing method - note the rows index is empty so it will return all rows 
-gap[ , "pop"]
+# extract a single variable using the indexing method 
+gap["pop"]
 
 ```
 
@@ -235,69 +293,16 @@ We can index **multiple** columns. This is done by providing a vector of variabl
 
 ```{r}
 # extract multiple variables using the indexing method
-gap[ , c("pop", "year")]
+gap[c("pop", "year")]
 
 # we can also define the vector of names first
 variables <- c("pop" , "year", "lifeExp")
-gap[ , variables]
+gap[variables]
 ```
 
 ### 🥊Challenge 4: Subsetting columns
 
 Extract three variables of your choice from the gap data frame. Thinking back to Part 1 when we learned the assignment operator `<-`. See if you can assign these three extracted variables to a new data frame called **gap_subset**.
-
-```{r}
-
-
-
-
-```
-
-### Tidyverse subsetting
-
-We just leaned how to subset columns in **base R**. Base R refers to all the functions and operators that you can use in R without installing any additional packages. Base R will get you a long way in data science. However, it is not always the easiest code to read and interpret. A common package that people use to perform data science in R is `tidyverse`. The `tidyverse` package includes functions that are designed to be more intuitive for doing data cleaning, visualization, and analysis.
-
-Before we use functions from `tidyverse`. We need to take two steps:
-
-1.  **Install** the package - you only need to do this once on your computer.
-
-2.  **Load** the package into R - you need to do this every time you open a new R session.
-
-💡These steps are the same for every package you download in R.
-
-```{r}
-# install the tidyverse package - note the name of the package needs to be in quotes
-install.packages("tidyverse")
-
-# load the package into the current R session - note the name of the package doesn't need to be in quotes (!) and you can use tab complete to see a list of installed packages
-library(tidyverse)
-
-# check that tidyverse has been loaded
-?tidyverse
-```
-
-Now we have installed and loaded tidyverse, we can use its `select` function to subset variables.
-
-```{r}
-
-# look up the documentation for select - focus on the Arguments section
-?select
-
-# select year, pop, and lifeExp from the dataset 
-select(gap, year, pop, lifeExp)
-
-# assign these variables to a new dataset
-gap_subset <- select(gap, year, pop, lifeExp)
-dim(gap_subset)
-head(gap_subset)
-
-```
-
-💡If you want to learn how to use tidyverse in more detail, you can check out D-Lab's [R Data Wrangling and Manipulation](https://github.com/dlab-berkeley/R-Data-Wrangling) workshop series.
-
-### 🥊Challenge 5: Select columns using tidyverse
-
-Use the `select()` function from `tidyverse` to select three variables from the gap data frame. Assign those three variables to a new data frame. Check the dimensions of your new data frame using the `dim()` function.
 
 ```{r}
 
@@ -327,4 +332,4 @@ gap %>%
 
 -   In **base R**, use indexing to subset the data by specifying the rows and columns we want in square brackets
 
--   In **tidyverse**, use `select()` to select variables
+-   We used the functions `length()`, `seq()`, `read.csv()`, `head()`, `dim()`, `View()`, and `class()`
