@@ -218,33 +218,6 @@ pop_mexico*1000000
 pop_mexico + 2
 ```
 
-### 🥊Challenge 4: Manipulating vectors
-
-The code above didn't permanently change the values in our population vector. Re-write the code above so that the population vector is an additional 2 million people in each year.
-
-```{r}
-
-
-
-```
-
-As well as mathematical operations, we can apply functions to vectors, for example the function `length()`.
-
-💡 To learn how to use a specific function, type `?` and then the function name - eg. `?length`. This will pull up the help page for that function. The Examples section at the end is particularly helpful.
-
-```{r}
-# look up how to use the function length
-?length
-
-```
-
-📝 **Poll RFun 1-2:** What is the length of the `pop_mexico` vector? Try out the `length()` function below and answer in the Zoom poll.
-
-```{r}
-# check the length of the pop_mexico vector 
-length(...)
-```
-
 ## 🎬Next time...
 
 Most of the time, you won't be working with single value variables or vectors. Instead, you'll be working with data that contains multiple variables. In Part 2, we will learn how to read in data to R and create **data frames** (a way to store data with multiple rows and columns).
@@ -273,6 +246,6 @@ gap[gap$country == "Mexico", c("country", "year", "pop")]
 
 -   Vectors store multiple values as long as they're the same type
 
--   We used the following functions: `ls()`, `rm()`, `c()`, and `length()`. To see how to use them use **?** followed by the function name (or Google them)
+-   We used the following functions: `ls()`, `rm()`, and `c()`. To see how to use them use **?** followed by the function name (or Google them)
 
 ## 
