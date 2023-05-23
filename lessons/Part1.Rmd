@@ -55,15 +55,11 @@ In this workshop, we will write and run code from an **R Notebook**. You can ope
 
 You can write **text** directly into a notebook, as you would a Word Document. To write **code** you need to create a code chunk. You can do this in three ways:
 
-1.  Click Insert --\> Code chunk --\> R
+1\. Click Insert --\> Code chunk --\> R
 
-2.  Use the keyboard shortcut **Ctrl + Alt + I** (windows) or **Cmd + Option + I** (mac) (I = the letter "i")
+2\. Use the keyboard shortcut **Ctrl + Alt + I** (windows) or **Cmd + Option + I** (mac) (I = the letter "i")
 
-3.  [for newer versions of R] Type **/** (forward slash) and a drop down menu should appear. Select R Code Chunk
-
-```{r}
-
-```
+3\. [for newer versions of R] Type **/** (forward slash) and a drop down menu should appear. Select R Code Chunk
 
 You can run code inside a code chunk in two ways:
 
