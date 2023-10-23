@@ -50,7 +50,7 @@ pop_mexico + 2
 
 ```
 
-### 🥊Challenge 1: Manipulating vectors
+### 🥊 Challenge 1: Manipulating vectors
 
 The code above didn't permanently change the values in our population vector. Re-write the code above so that the population vector is an additional 2 (million) people in each year.
 
@@ -134,7 +134,7 @@ In R language, a data frame is an object containing multiple vectors of the same
 
 Figure: diagram of a data.frame showing variables as columns, observations as rows, and values as cells. Source: [Wickham, Cetinkaya-Rundel and Grolemund. 2023. R for Data Science (2e)](https://r4ds.hadley.nz/data-tidy.html#fig-tidy-structure)
 
-### 🥊Challenge 2: Your own data
+### 🥊 Challenge 2: Your own data
 
 Think of an example of data you have worked with. What are the observations (the unit of measurement)? What are the variables (the information being measured)? **Write your answer in the chat, but don't hit send until I say go...**
 
@@ -176,7 +176,7 @@ After importing data, the first thing to check is if the data looks like you exp
 head(gap)
 ```
 
-### 🥊Challenge 3: Import a csv file and explore the data
+### 🥊 Challenge 3: Import a csv file and explore the data
 
 Clear the global environment (hint: if you can't remember the function to do this, you can use the broom icon). Read in the Gapminder data saved in the Data directory and save it to an object called **gap**.
 
@@ -300,7 +300,7 @@ variables <- c("pop" , "year", "lifeExp")
 gap[variables]
 ```
 
-### 🥊Challenge 4: Subsetting columns
+### 🥊 Challenge 4: Subsetting columns
 
 Extract three variables of your choice from the gap data frame. Thinking back to Part 1 when we learned the assignment operator `<-`. See if you can assign these three extracted variables to a new data frame called **gap_subset**.
 

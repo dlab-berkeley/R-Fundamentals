@@ -37,7 +37,7 @@ Before we get started, lets load in the `tidyverse` package that we used in Part
 library(tidyverse)
 ```
 
-### 🥊Challenge 1: Reading in data
+### 🥊 Challenge 1: Reading in data
 
 Load in `data/gapminder.csv` using the `read.csv()` function from earlier workshops and assign it to the object **gap**.
 
@@ -51,7 +51,7 @@ Load in `data/gapminder.csv` using the `read.csv()` function from earlier worksh
 
 In Part 3 we used `summary()`, `table()`, and `mean()` to learn some things from our data. For example:
 
-### 🥊Challenge 2: Summary statistics
+### 🥊 Challenge 2: Summary statistics
 
 What is the average life expectancy in our data? How much does life expectancy range?
 
@@ -152,7 +152,7 @@ ggplot(data = gap, aes(x = continent, y = lifeExp, fill = continent)) +
 
 ```
 
-### 🥊Challenge 3: What plots could we create from our data?
+### 🥊 Challenge 3: What plots could we create from our data?
 
 Explore the variables in the `gap` data frame. What other questions could we ask from our data? What plot would answer the question?
 
@@ -202,7 +202,7 @@ gap %>%
 
 ```
 
-### 🥊Challenge 4: Create a scatter plot
+### 🥊 Challenge 4: Create a scatter plot
 
 Create a scatter plot that shows the relationship between `lifeExp` and `gdpPercap` . Start with a "simple" plot using `geom_point()`. Then think about edits you could make to the plot that might make it easier to read. For example, changing the x and y axis, adding a title, coloring the points by a certain grouping etc.
 
@@ -318,11 +318,11 @@ continent_lifeexp("Asia")
 continent_lifeexp("Americas")
 ```
 
-### 🥊Challenge 5: Write a custom function
+### 🥊 Challenge 5: Write a custom function
 
 Write a function that filters the gap data set to a specific year. Then estimate the average GDP per capita in that year. Make your function so you can input a different year and the functions outputs the average GDP per capita for that year. Use the code above as a template.
 
-💡When writing functions, it is helpful to make sure the inside code does what you want it to without error before including it in the function. To do this, write the code as you would not in a function, check it works, then replace any year values with the arugments that you use for year.
+💡 When writing functions, it is helpful to make sure the inside code does what you want it to without error before including it in the function. To do this, write the code as you would not in a function, check it works, then replace any year values with the arugments that you use for year.
 
 ```{r}
 

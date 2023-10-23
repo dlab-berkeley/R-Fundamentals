@@ -76,7 +76,7 @@ You can run code inside a code chunk in two ways:
 
 💡Commenting your code is so important. The best practice is to write **why** you are doing something, not just **what** you are doing.
 
-### 🥊Challenge 1: Create and run a chunk of code
+### 🥊 Challenge 1: Create and run a chunk of code
 
 Use the two methods above to create a chunk of code. In the chunk, experiment with writing and running some math. Remember to comment your code.
 
@@ -126,7 +126,7 @@ lifeexp <- 76.2
 
 ⚠️ We will talk about different types of variables (numeric, characters, categorical) in Part 2.
 
-### 🥊Challenge 2: Creating variables
+### 🥊 Challenge 2: Creating variables
 
 Create a variable called continent and assign it the value "Americas". Create variable called pop and assign it the value 4.5.
 
@@ -177,7 +177,7 @@ ls()
 
 💡`ls()` and `rm()` are both **functions**, which are commands that generate some output. We will learn several functions across the workshop. The best way to learn and remember functions in R is it to Google them!
 
-### 🥊Challenge 3: Creating variables from other variables
+### 🥊 Challenge 3: Creating variables from other variables
 
 Pick a country. Look up it's population and create a variable which stores the population. Now look up the GDP (Gross Domestic Product) and create another variable which stores the GDP. Can you use these two variables to create a third variable which stores the GDP per capita (GDP divided by population)?
 
@@ -218,7 +218,7 @@ pop_mexico*1000000
 pop_mexico + 2
 ```
 
-## 🎬Next time...
+## 🎬 Next time...
 
 Most of the time, you won't be working with single value variables or vectors. Instead, you'll be working with data that contains multiple variables. In Part 2, we will learn how to read in data to R and create **data frames** (a way to store data with multiple rows and columns).
 
@@ -247,5 +247,3 @@ gap[gap$country == "Mexico", c("country", "year", "pop")]
 -   Vectors store multiple values as long as they're the same type
 
 -   We used the following functions: `ls()`, `rm()`, and `c()`. To see how to use them use **?** followed by the function name (or Google them)
-
-## 

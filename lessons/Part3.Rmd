@@ -66,7 +66,7 @@ library(tidyverse)
 
 Now we have installed and loaded tidyverse, we can use its `select` function to subset variables. First, we need our dataframe.
 
-### 🥊Challenge 1: Reading in data
+### 🥊 Challenge 1: Reading in data
 
 In Part 2 we learned to read in a csv file and assign it to a data frame called `gap`. Let's do that again. How can you find out what variables we have in our data?
 
@@ -96,7 +96,7 @@ head(gap_subset)
 
 💡If you want to learn how to use tidyverse in more detail, you can check out D-Lab's [R Data Wrangling and Manipulation](https://github.com/dlab-berkeley/R-Data-Wrangling) workshop series.
 
-### 🥊Challenge 2: Select columns using tidyverse
+### 🥊 Challenge 2: Select columns using tidyverse
 
 Use the `select()` function from `tidyverse` to select three variables from the gap data frame. Assign those three variables to a new data frame. Check the dimensions of your new data frame using the `dim()` function.
 
@@ -277,9 +277,9 @@ summary(gap_nomissing$gdpPercap)
 
 ```
 
-⚠️When dropping missing values, it drops the entire row of data that contained those missing values. This means we lose cells that had non-missing values for other variables. Choosing whether to drop the row entirely or using functions that ignore missing values will depend on what you're trying to do in your data cleaning and analysis.
+⚠️ When dropping missing values, it drops the entire row of data that contained those missing values. This means we lose cells that had non-missing values for other variables. Choosing whether to drop the row entirely or using functions that ignore missing values will depend on what you're trying to do in your data cleaning and analysis.
 
-### **🎬Reporting the missing values for all variables in our data**
+### **🎬 Reporting the missing values for all variables in our data**
 
 The code below uses two functions from **tidyverse**, `summarize()` and `pivot_longer()`, to make a table showing the number of missing values in each variable. We learn these functions in [R Data Wrangling](https://github.com/dlab-berkeley/R-Data-Wrangling), which is a great course to take after R Fundamentals.
 
@@ -349,7 +349,7 @@ summary(continent_factor)
 
 ⚠️ We create factor versions of our `continent` variable outside of the gap data frame. To create new variable or modify existing variables in a data frame we can use the `mutate()` function from **tidyverse**. This is beyond this workshop but is covered in [R Data Wrangling](https://github.com/dlab-berkeley/R-Data-Wrangling).
 
-## 🎬Next time...
+## 🎬 Next time...
 
 Selecting and filtering data are frames are key steps in telling stories from our data. Looking at summary statistics and visualization are the next steps for understanding our data and presenting it to other people.
 

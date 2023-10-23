@@ -1,27 +1,18 @@
 ## Solutions to R Fundamentals Pilot - Part 2 of 4
 
-## Challenge 1: Another way to create vectors ----
+## Challenge 1: Manipulating vectors ----
+#The code above didn't permanently change the values in our population vector. 
+# Re-write the code above so that the population vector is an additional 2 million people in each year.
 
-#A third way to create a vector is using the : operator (colon operator). Look up the help page with ?colon or Google how to use it (sometimes help pages are less helpful). Create a vector called years_v3 that is the years 2018 to 2022 using the : operator.
+pop_mexico <- c(123, 124, 125, 126, 127)
 
-#Check that the three vectors we've created are the same length.
+# adds 2 without permanently changing pop_mexico
+pop_mexico + 2
+pop_mexico
 
-# 1st vector - uses c()
-years <- c(2018, 2019, 2020, 2021, 2022)
-
-# 2nd vector - uses seq()
-years_v2 <- seq(from = 2018, to = 2022, by = 1)
-
-# 3rd vector - uses : 
-?colon # look up documentation 
-
-years_v3 <- 2018:2022
-
-# check all vectors are the same length
-length(years)
-length(years_v2)
-length(years_v3)
-
+# adds 2 and re-assigns to the pop_mexico variable
+pop_mexico <- pop_mexico + 2
+pop_mexico
 
 ## Challenge 2 - answer in the chat ----
 
@@ -48,23 +39,13 @@ dim(gap)
 head(gap)
 # information on countries across years - population, GDP, and life expectancy 
 
-
 ## Challenge 4: Subsetting columns ----
 
-#Extract three variables of your choice from the gap data frame. Thinking back to Part 1 when we learned the assignment operator <-. See if you can assign these three extracted variables to a new data frame called gap_subset.
+#Extract three variables of your choice from the gap data frame. 
+# Thinking back to Part 1 when we learned the assignment operator <-. 
+# See if you can assign these three extracted variables to a new data frame called gap_subset.
 
 gap_subset <- gap[ , c("year", "country", "pop")]
 head(gap_subset)
 dim(gap_subset)
 
-
-## Challenge 5: Select columns using tidyverse ----
-#Use the select() function from tidyverse to select three variables from the gap data frame. Assign those three variables to a new data frame. Check the dimensions of your new data frame using the dim() function.
-
-# make sure tidyverse is loaded
-library(tidyverse)
-
-gap_subset_v2 <- gap %>%
-  select(year, country, lifeExp)
-
-dim(gap_subset_v2)

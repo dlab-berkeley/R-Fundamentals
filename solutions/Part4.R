@@ -14,9 +14,15 @@ mean(gap$lifeExp)
 # range of life expectancy 
 summary(gap$lifeExp)
 
+## Challenge 3: Plots ----
+# answer in the chat 
+
 
 ## Challenge 4: Create a scatter plot ----
-# Create a scatter plot that shows the relationship between lifeExp and gdpPercap . Start with a "simple" plot using geom_point(). Then think about edits you could make to the plot that might make it easier to read. For example, changing the x and y axis, adding a title, coloring the points by a certain grouping etc.
+# Create a scatter plot that shows the relationship between lifeExp and gdpPercap. 
+# Start with a "simple" plot using geom_point(). 
+# Then think about edits you could make to the plot that might make it easier to read. 
+# For example, changing the x and y axis, adding a title, coloring the points by a certain grouping etc.
 
 # make sure tidyverse is loaded in 
 library(tidyverse)
