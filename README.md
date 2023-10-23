@@ -32,6 +32,8 @@ R Fundamentals has 4 parts. Each of the parts takes 2 hours, and is delivered in
 
 ## Installation Instructions
 
+**NOTE:** We will spend the first part of Workshop 1 installing R and downloading materials for the workshop series. You do not need to install R beforehand. 
+
 RStudio is a software commonly used by R practitioners to develop code in R. We will use RStudio to go through the workshop materials, which requires the installation of both the R language and the RStudio software. If you would like to run R on your own computer, complete the following steps prior to the workshop:
 
 1.  [Download R](https://cloud.r-project.org/): Follow the links according to the operating system you are running. You will first need to click on a link corresponding to your operating system, and then an additional link to select a specific version of R. Download the package, and install R onto your computer. You should install the most recent version (at least version 4.1).
