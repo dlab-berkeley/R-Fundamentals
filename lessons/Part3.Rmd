@@ -205,7 +205,7 @@ Start with the gap data frame. Use the `%>%` operator and the functions `select(
 
 ```
 
-## Summary Statistics
+## Missing Values
 
 Before creating visualizations, computing basic summary statistics is a good first step after familiarizing yourself with your data. The `summary()` function gives statistics about the distribution of a variable.
 
@@ -213,18 +213,10 @@ Before creating visualizations, computing basic summary statistics is a good fir
 # summary for life expectancy
 summary(gap$lifeExp)
 
-```
-
-**🔔 What do we learn about the countries in our data from this?**
-
-We can also use the `mean()` function to report just the mean of a variable.
-
-```{r}
+# we can also print only the mean value using the mean() function
 mean(gap$lifeExp)
 
 ```
-
-## Missing Values
 
 🔔 What do you notice when you use the `mean()` and `summary()` functions on `gap$gdpPercap` ?
 
