@@ -3,17 +3,17 @@ title: "R Fundamentals - Part 1 of 4: Introduction"
 output: html_notebook
 ---
 
-📝 Have you attended a D-Lab workshop before? Answer in the zoom poll.
+📝 **Poll:** Have you attended a D-Lab workshop before? Answer in the Zoom poll.
 
 ## Learning Objectives
 
 Welcome to Part 1 of the R Fundamentals series. Our goals for today's workshop are:
 
-1.  Demonstrate how to navigate R-Studio
+1.  Demonstrate how to navigate R-Studio.
 
-2.  Define what R is useful and not useful for
+2.  Define what R is useful and not useful for.
 
-3.  Use code to create variables and vectors
+3.  Use code to create variables and vectors.
 
 Throughout this workshop series, we will use the following icons:
 
@@ -35,23 +35,23 @@ RStudio is the interface in which we use the programming language R. By default,
 
 1.  Script or notebook (upper left): This is where you write, edit and run code. You will spend most of your time in this panel.
 
-2.  Console (lower left): You can use the console to enter R commands on the fly (they will not be saved). Output from code run in the script (above) will be output here.
+2.  Console (lower left): You can use the console to enter R commands on the fly (they will not be saved). Output from code run in the script (above) will appear here.
 
 3.  Global Environment (upper right): Saved variables, functions, and other R objects will appear here.
 
 4.  Misc (lower right): A variety of other tabs which allow you to navigate your file system, view plots, install packages, view help, etc.
 
-### Opening a notebook
+### Opening a Notebook
 
 In this workshop, we will write and run code from an **R Notebook**. You can open a new notebook by clicking File --\> New File --\> R Notebook.
 
-⚠️ **R notebooks** are a different file type than **R scripts**. Notebooks are great for data analysis and visualization, when the goal is to both run code and communicate results to others (and yourself) with text. Scripts are great for data cleaning, when the goal is to create cleaned data that you will later analyse.
+⚠️ **Warning**: **R notebooks** are a different file type than **R scripts**. Notebooks are great for data analysis and visualization, when the goal is to both run code and communicate results to others (and yourself) with text. Scripts are great for data cleaning, when the goal is to create cleaned data that you will later analyse.
 
-💡Click the **Visual** button in the top left of the toolbar to view the notebook in a more readable format.
+💡 **Tip:** Click the **Visual** button in the top left of the toolbar to view the notebook in a more readable format.
 
-💡Click the **Outline** button in the top right of the toolbar to see a navigation panel for the notebook.
+💡 **Tip:** Click the **Outline** button in the top right of the toolbar to see a navigation panel for the notebook.
 
-### Writing and running code
+### Writing and Running Code
 
 You can write **text** directly into a notebook, as you would a Word Document. To write **code** you need to create a code chunk. You can do this in three ways:
 
@@ -63,7 +63,7 @@ You can write **text** directly into a notebook, as you would a Word Document. T
 
 You can run code inside a code chunk in two ways:
 
-1.  Click the small green play button at the top right of the chunk - this will run all the code inside the chunk
+1.  Click the small green play button at the top right of the chunk - this will run all the code inside the chunk.
 
 2.  Use the keyboard shortcut **Ctrl + Enter** (windows) or **Cmd + Enter** (mac) - this will run the single line of code your cursor is on
 
@@ -74,13 +74,13 @@ You can run code inside a code chunk in two ways:
 2 + 3
 ```
 
-💡Commenting your code is so important. The best practice is to write **why** you are doing something, not just **what** you are doing.
+💡 **Tip:** Writing **comments** about your code is very important. The best practice is to write **why** you are doing something, not just **what** you are doing.
 
-### 🥊 Challenge 1: Create and run a chunk of code
+### 🥊 Challenge 1: Create and Run a Chunk of Code
 
 Use the two methods above to create a chunk of code. In the chunk, experiment with writing and running some math. Remember to comment your code.
 
-💡You can save this notebook with your answers to the challenges and any notes you take throughout the workshop. Click the 💾 icon in the toolbar or select File --\> Save.
+💡 **Tip:** You can save this notebook with your answers to the challenges and any notes you take throughout the workshop. Click the 💾 icon in the toolbar or select File --\> Save.
 
 ## Why use R?
 
@@ -88,17 +88,17 @@ R is a programming language designed for **data analysis**. R is great for data 
 
 R is **not** a general purpose programming language. If you want to do something like build a website or train a machine learning model, languages such as [Python](https://github.com/dlab-berkeley/Python-Fundamentals-Pilot) are better suited for these tasks.
 
-🔔 What tasks would you like to use R for? How do you envision using R in your research or class projects? **Put your answer in the chat.**
+🔔 **Question:** What tasks would you like to use R for? How do you envision using R in your research or class projects? **Put your answer in the chat.**
 
 ## Creating Variables
 
-Variables are objects that hold values. Variables can be inside data sets (like columns in an excel sheet) or stand alone objects. The syntax for creating a variable is:
+Variables are objects that hold values. Variables can be inside data sets (like columns in an excel sheet) or standalone objects. The syntax for creating a variable is:
 
--   Left hand side is the variable name
+-   Left hand side is the variable name.
 
 -   Next is the **assignment** **operator**: `<-`
 
--   Right hand side is the value to assign to that variable
+-   Right hand side is the value to assign to that variable.
 
 ```{r}
 # a variable that gives the year 
@@ -124,11 +124,11 @@ lifeexp <- 76.2
 
 ```
 
-⚠️ We will talk about different types of variables (numeric, characters, categorical) in Part 2.
+⚠️ **Warning**: We will talk about different types of variables (numeric, characters, categorical) in Part 2.
 
-### 🥊 Challenge 2: Creating variables
+### 🥊 Challenge 2: Creating Variables
 
-Create a variable called continent and assign it the value "Americas". Create variable called pop and assign it the value 4.5.
+Create a variable called `continent` and assign it the value "Americas". Create a variable called `pop` and assign it the value 4.5.
 
 ```{r}
 
@@ -139,7 +139,7 @@ Create a variable called continent and assign it the value "Americas". Create va
 All variables created show up in the Global Environment (top right panel).
 
 ```{r}
-# print a list of all variables in your environemnt
+# print a list of all variables in your environment
 ls()
 ```
 
@@ -154,7 +154,7 @@ rm(name)
 rm(list = ls())
 ```
 
-⚠️ You cannot undo removing a variable. You must instead re-create the variable.
+⚠️ **Warning**:  You cannot undo removing a variable. You must instead re-create the variable.
 
 If you want to rename a variable, the easiest thing to do is create a variable with the new name and remove the old variable.
 
@@ -175,11 +175,13 @@ rm(pop)
 ls()
 ```
 
-💡`ls()` and `rm()` are both **functions**, which are commands that generate some output. We will learn several functions across the workshop. The best way to learn and remember functions in R is it to Google them!
+💡 **Tip:** `ls()` and `rm()` are both **functions**, which are commands that generate some output. We will learn several functions across the workshop. The best way to learn and remember functions in R is to Google them or ask ChatGPT!
 
-### 🥊 Challenge 3: Creating variables from other variables
+### 🥊 Challenge 3: Creating Variables from Other Variables
 
-Pick a country. Look up it's population and create a variable which stores the population. Now look up the GDP (Gross Domestic Product) and create another variable which stores the GDP. Can you use these two variables to create a third variable which stores the GDP per capita (GDP divided by population)?
+Pick a country. Look up its population and create a variable which stores the population. Now look up the GDP (Gross Domestic Product) and create another variable which stores the GDP. 
+
+Can you use these two variables to create a third variable which stores the GDP per capita (GDP divided by population)?
 
 ```{r}
 
@@ -218,11 +220,11 @@ pop_mexico*1000000
 pop_mexico + 2
 ```
 
-## 🎬 Next time...
+## 🎬 **Demo**: Next Time...
 
 Most of the time, you won't be working with single value variables or vectors. Instead, you'll be working with data that contains multiple variables. In Part 2, we will learn how to read in data to R and create **data frames** (a way to store data with multiple rows and columns).
 
-🔔 Run the two chunks of code below. What do you think we are doing?
+🔔 **Tip:** Run the two chunks of code below. What do you think we are doing?
 
 ```{r}
 # read in data

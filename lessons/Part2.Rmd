@@ -7,11 +7,11 @@ output: html_notebook
 
 Welcome to Part 2 of the R Fundamentals series. Our goals for today's workshop are:
 
-1.  Recall what a vector is and define a data frame
+1.  Recall what a vector is and define a data frame.
 
-2.  Learn what functions are and how to use them
+2.  Learn what functions are and how to use them.
 
-3.  Use read.csv to import data
+3.  Use read.csv to import data.
 
 Throughout this workshop series, we will use the following icons:
 
@@ -27,7 +27,7 @@ Throughout this workshop series, we will use the following icons:
 
 🎬 **Demo**: Showing off something more advanced so you know what you can use R for in the future
 
-## Vector recap
+## Vector Recap
 
 In Part 1 we learned how to create vectors using the `c()` function.
 
@@ -50,7 +50,7 @@ pop_mexico + 2
 
 ```
 
-### 🥊 Challenge 1: Manipulating vectors
+### 🥊 Challenge 1: Manipulating vVectors
 
 The code above didn't permanently change the values in our population vector. Re-write the code above so that the population vector is an additional 2 (million) people in each year.
 
@@ -62,33 +62,33 @@ The code above didn't permanently change the values in our population vector. Re
 
 ## Functions
 
-As well as mathematical operations, we can apply **functions** to vectors, for example the function `length()`.
+Beyond mathematical operations, we can apply **functions** to vectors, for example the function `length()`.
 
 ```{r}
 length(pop_mexico)
 ```
 
-More generally, functions are commands that take an input and return some output. They are identified by the trailing brackets. Inside the brackets go:
+Functions are commands that take an input and return some output. They are identified by the trailing brackets. Inside the brackets you'll put:
 
-1.  **input** - the thing that the function is doing something to
+1.  **input** - the object that the function is operating on.
 
-2.  **arguments** - modifications we make to the function (the first argument is usually the input)
+2.  **arguments** - modifications we make to the function (the first argument is usually the input).
 
-🔔 What is the **input** for the `length()` function?
+🔔 **Tip:** What is the **input** for the `length()` function?
 
 ```{r}
 length(pop_mexico)
 
 ```
 
-⚠️ Not all functions have inputs or arguments - for example, the `ls()` function doesn't require an input but still gives us an output.
+⚠️ **Warning:** Not all functions have inputs or arguments - for example, the `ls()` function doesn't require an input but still gives us an output.
 
 ```{r}
 ls()
 
 ```
 
-We can modify functions by changing the **arguments** in the function. The function `seq()` has several arguments, which we can look at in the help page.
+We can modify functions by changing the **arguments** in the function. The function `seq()` has several arguments, which we can look at on the help page.
 
 ```{r}
 # look up what the seq() functions does and what arguments it uses
@@ -97,7 +97,7 @@ We can modify functions by changing the **arguments** in the function. The funct
 
 ```
 
-📝 **Poll RFun 2-1:** Looking at the seq() help page, which code is correct for creating a vector with the years 2018 to 2022? Try out the code in the poll below and answer in the Zoom poll.
+📝 **Poll RFun 2-1:** Looking at the `seq()` help page, which code is correct for creating a vector with the years 2018 to 2022? Try the code out in the poll below and answer in the Zoom poll.
 
 ```{r}
 
@@ -122,25 +122,25 @@ years_v3 <- c(2018:2022)
 
 ```
 
-💡 It's okay to try out functions and operators and get things wrong! Interpreting error messages and debugging code is the bread and butter of coding.
+💡 **Tip:** It's okay to try out functions and operators and get things wrong! Interpreting error messages and debugging code is the bread and butter of coding.
 
-## Data frames
+## Data Frames
 
 **Vectors** are variables that store multiple values of the same type (all numbers or all words). Most of the time, we want to work with data that have multiple variables - we call this **multidimensional data**. In R, we use **data frames** to store multidimensional data.
 
-In R language, a data frame is an object containing multiple vectors of the same length. The values in a given vector are all the same type, but the vectors may each hold a different type of value. In everyday language, a data frame is a collection of variables (columns). Each variable contains the same number of observations (rows).
+In the R language, a data frame is an object containing multiple vectors of the same length. The values in a given vector are all the same type, but the vectors may each hold a different type of value. In everyday language, a data frame is a collection of variables (columns). Each variable contains the same number of observations (rows).
 
 ![](https://r4ds.hadley.nz/images/tidy-1.png "Test")
 
-Figure: diagram of a data.frame showing variables as columns, observations as rows, and values as cells. Source: [Wickham, Cetinkaya-Rundel and Grolemund. 2023. R for Data Science (2e)](https://r4ds.hadley.nz/data-tidy.html#fig-tidy-structure)
+Figure: diagram of a data frame showing variables as columns, observations as rows, and values as cells. Source: [Wickham, Cetinkaya-Rundel and Grolemund. 2023. R for Data Science (2e)](https://r4ds.hadley.nz/data-tidy.html#fig-tidy-structure)
 
-### 🥊 Challenge 2: Your own data
+### 🥊 Challenge 2: Your Own Data
 
 Think of an example of data you have worked with. What are the observations (the unit of measurement)? What are the variables (the information being measured)? **Write your answer in the chat, but don't hit send until I say go...**
 
-⚠️Data frames are not the only way to store multidimensional data in R - but they are the most common and easiest to work with.
+⚠️ **Warning:** Data frames are not the only way to store multidimensional data in R - but they are the most common and easiest to work with.
 
-## Import data
+## Import Data
 
 You can create a data frame in R and fill it with values. Normally though, you **import** data and save it as a data frame. You can import many different types of files into R (eg. excel sheets, csv files, dta files). Today we will import a csv file.
 
@@ -152,9 +152,15 @@ gap <- read.csv("gapminder.csv")
 
 ```
 
-🔔 The code above returned an error - why do you think this is?
+🔔 **Question:** The code above returned an error - why do you think this is?
 
-When we read in data, we need to specify the **relative file path**. This means, from our **current working directory**, how do we get to the file we want to import.
+When we read in data, we need to specify the **relative file path**. This means, from our **current working directory**, navigating our file structure to get to the file we want to import.
+
+Imagine the file path on your computer as the exact address to a specific room in a sprawling mansion. The mansion has multiple floors, each with a variety of rooms: bedrooms, kitchens, and libraries. To find your way to a specific room, you would start at the front entrance (the root directory), then move up staircases or down hallways (subdirectories) until you reach your destination. 
+
+Just as you might give a friend detailed instructions like "enter the mansion, go up to the second floor, turn left, take the third door on the right," a file path provides the computer with precise directions to locate a specific file amid thousands of other files. This way, the computer knows exactly where to go to find what you're looking for.
+
+In the following piece of code, we are saying: "Go up one directory/folder from the current working directory, then go into the"data" directory, then open "gapminder.csv".
 
 ```{r}
 # print out our current working directory
@@ -165,9 +171,9 @@ gap <- read.csv("../data/gapminder.csv")
 
 ```
 
-💡Within a file path, a period "." means "in this directory". A double period ".." means "go back one directory".
+💡 **Tip:** Within a file path, a period "." means "in this directory". A double period ".." means "go back one directory".
 
-⚠️In R Notebooks, the working directory is always the directory in which the notebook is saved in - so all data needs to be read in relative to that directory. In R Scripts, you can change the working directory at the start of your script by using the `setwd()` function.
+⚠️ **Warning:** In R Notebooks, the working directory is always the directory in which the notebook is saved. All data that needs to be read, needs to be located relative to that directory. In R Scripts, you can change the working directory at the start of your script by using the `setwd()` function.
 
 After importing data, the first thing to check is if the data looks like you expected it to.
 
@@ -178,7 +184,7 @@ head(gap)
 
 ### 🥊 Challenge 3: Import a csv file and explore the data
 
-Clear the global environment (hint: if you can't remember the function to do this, you can use the broom icon). Read in the Gapminder data saved in the Data directory and save it to an object called **gap**.
+Clear the global environment (hint: if you can't remember the function to do this, you can use the broom icon). Read in the Gapminder data (it's in the Data directory) and save it to an object called **gap**.
 
 Then use the functions `head()`, `dim()`, and `View()` (note the capital V) to answer the following questions:
 
@@ -204,7 +210,7 @@ Then use the functions `head()`, `dim()`, and `View()` (note the capital V) to a
 
 ```
 
-💡Often times different file types have different functions for importing them. To import a specific file type, Google what package and function is needed. Common packages for less common file types are `foreign` and `haven`.
+💡 **Tip:** Oftentimes, different file types have different functions for importing them. To import a specific file type, you can Google or ask ChatGPT what package and function is needed. E.g., packages for less common file types are `foreign` and `haven`.
 
 ## Classes of data
 
@@ -229,16 +235,16 @@ class(gap$pop)
 class(gap$country)
 ```
 
-🔔 Why is the class of `pop` **numeric** and the class of `country` is **character**?
+🔔 **Question:** Why is the class of `pop` a **numeric** class, and the class of `country` a **character** class?
 
 ```{r}
 # check if all numeric-looking variables have the same class
 class(gap$year)
 ```
 
-🔔 Why do you think `year` has class **integer** but `pop` has class **numeric**?
+🔔 **Question:** Why do you think `year` has class **integer** but `pop` has class **numeric**?
 
-Overall there are five classes of data:
+Overall, there are five classes of data in R:
 
 1.  **numeric**: decimals (the default for ALL numbers in R)
 
@@ -250,7 +256,7 @@ Overall there are five classes of data:
 
 5.  **factor**: nominal or ordinal categorical type
 
-⚠️ We have learned the first three classes. We will encounter **logicals** and **factors** later in the series.
+⚠️ **Warning:**  We have learned the first three classes. We will encounter **logicals** and **factors** later in the series.
 
 📝 **Poll RFun 2-3**: Use the function `class()` on each of the following variables and match them with their class: `continent`, `lifeExp`, `gdpPercap`, `year`
 
@@ -261,14 +267,14 @@ class(...)
 
 ```
 
-## Subsetting data frames
+## Subsetting Data Frames
 
-We often want to work with **subsets** of our data. A subset is a portion or slice of our data. It could be a subset of rows, for example, if we wanted to see all rows for the country Argentina. It could also be a subset of columns, for example, if we wanted to see only population and year. It could also be a combination of rows and columns. We do this by **indexing**.
+We often want to work with **subsets** of our data. A subset is a portion or slice of our data. It could be a subset of rows, for example, if we wanted to see all rows for the country Argentina. It could also be a subset of columns - for example, if we wanted to see only population and year. It could also be a combination of rows and columns. We do this by **indexing**.
 
 Indexing refers to specifying the rows or columns that we want to extract from an object. It is done using **square brackets**. For a single vector, we extract a specific element by providing the index of that value (index means its place in the vector).
 
 ```{r}
-# create a vector with years from 2000 to 2010 in 
+# create a vector with years from 2000 to 2010 
 years <- 2000:2010
 years
 
@@ -279,7 +285,7 @@ years[5]
 years[12]
 ```
 
-Because data frames are two dimensional, we can specify the rows and the columns we want. The format is: **data.frame[rows, columns]**. By leaving either rows or columns blank, that selects all of them.
+Because data frames are two-dimensional, we can specify the rows and the columns we want. The format is: **data.frame[rows, columns]**. By leaving either rows or columns blank, that selects all of them.
 
 To extract a single variable, we specify the variable name withing the square brackets. This returns all the rows but only one column.
 
@@ -300,9 +306,9 @@ variables <- c("pop" , "year", "lifeExp")
 gap[variables]
 ```
 
-### 🥊 Challenge 4: Subsetting columns
+### 🥊 Challenge 4: Subsetting Columns
 
-Extract three variables of your choice from the gap data frame. Thinking back to Part 1 when we learned the assignment operator `<-`. See if you can assign these three extracted variables to a new data frame called **gap_subset**.
+Extract three variables of your choice from the gap data frame. Think back to Part 1 when we learned the assignment operator `<-`. See if you can assign these three extracted variables to a new data frame called **gap_subset**.
 
 ```{r}
 
@@ -311,11 +317,11 @@ Extract three variables of your choice from the gap data frame. Thinking back to
 
 ```
 
-## 🎬Next time...
+## 🎬 **Demo:** Next Time...
 
-As well as subsetting columns, we can also subset rows. To do this, we use **conditional statements** to tell R which rows we want to return.
+Besides subsetting columns, we can subset rows. To do this, we use **conditional statements** to tell R which rows we want to return.
 
-🔔 Run the chunk of code below. What do you think we are doing?
+🔔 **Question:** Run the chunk of code below. What do you think we are doing?
 
 ```{r}
 gap %>%

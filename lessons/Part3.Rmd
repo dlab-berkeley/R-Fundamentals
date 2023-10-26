@@ -7,11 +7,11 @@ output: html_notebook
 
 Welcome to Part 3 of the R Fundamentals series. Our goals for today's workshop are:
 
-1.  Use conditional statements to filter rows
+1.  Use conditional statements to filter rows.
 
-2.  Practice generating summary statistics
+2.  Practice generating summary statistics.
 
-3.  Learn how to store categorical variables as factors
+3.  Learn how to store categorical variables as factors.
 
 Throughout this workshop series, we will use the following icons:
 
@@ -27,10 +27,10 @@ Throughout this workshop series, we will use the following icons:
 
 🎬 **Demo**: Showing off something more advanced so you know what you can use R for in the future
 
-Before we get started, let's load in the `tidyverse` package that we used in Part 2. We will use this today for subsetting our data and for making plots.
+Before we get started, let's load in the `tidyverse` package that we used in Part 2. We will use this today to subset our data and to make plots!
 
 ```{r}
-# if you haven't install tidyverse before, uncomment this line 
+# if you haven't installed tidyverse before, uncomment this line 
 #install.packages("tidyverse")
 
 # if you have previously installed tidyverse, load it into the current R session
@@ -39,15 +39,17 @@ library(tidyverse)
 
 ## Tidyverse
 
-In Part 2, we learned how to subset columns in **base R**. Base R refers to all the functions and operators that you can use in R without installing any additional packages. Base R will get you a long way in data science. However, it is not always the easiest code to read and interpret. A common package that people use to perform data science in R is `tidyverse`. The `tidyverse` package includes functions that are designed to be more intuitive for doing data cleaning, visualization, and analysis.
+In Part 2, we learned how to subset columns in **base R**. Base R refers to all the functions and operators that you can use in R without installing any additional packages. Base R will get you a long way in data science. However, it is not always the easiest code to read and interpret. 
 
-Before we use functions from `tidyverse`. We need to take two steps:
+A common package that people use to perform data science in R is `tidyverse`. The `tidyverse` package includes functions that are designed to be more intuitive for doing data cleaning, visualization, and analysis.
+
+Before we use functions from `tidyverse`, we need to take two steps:
 
 1.  **Install** the package - you only need to do this once on your computer.
 
 2.  **Load** the package into R - you need to do this every time you open a new R session.
 
-💡These steps are the same for every package you download in R.
+💡 **Tip:** These steps are the same for every package you download in R.
 
 ```{r}
 # install the tidyverse package - note the name of the package needs to be in quotes
@@ -60,15 +62,15 @@ library(tidyverse)
 ?tidyverse
 ```
 
-⚠️ It's ok for text in red to display when you load in a package. **Warnings** are fine and don't mean anything is wrong. **Errors** are problems and mean something is wrong that needs to be fixed.
+⚠️ **Warning:** It's okay for text to display in red when you load in a package. **Warnings** are fine and don't mean anything is wrong. **Errors** are problems and mean something is wrong that needs to be fixed.
 
-### Subsetting columns in tidyverse
+### Subsetting Columns in Tidyverse
 
 Now we have installed and loaded tidyverse, we can use its `select` function to subset variables. First, we need our dataframe.
 
-### 🥊 Challenge 1: Reading in data
+### 🥊 Challenge 1: Reading in Data
 
-In Part 2 we learned to read in a csv file and assign it to a data frame called `gap`. Let's do that again. How can you find out what variables we have in our data?
+In Part 2 we learned to read in a .csv file and assign it to a data frame called `gap`. Let's do that again. How can you find out what variables we have in our data?
 
 ```{r}
 
@@ -94,9 +96,9 @@ head(gap_subset)
 
 ```
 
-💡If you want to learn how to use tidyverse in more detail, you can check out D-Lab's [R Data Wrangling and Manipulation](https://github.com/dlab-berkeley/R-Data-Wrangling) workshop series.
+💡 **Tip:** If you want to learn how to use tidyverse in more detail, you can check out D-Lab's [R Data Wrangling and Manipulation](https://github.com/dlab-berkeley/R-Data-Wrangling) workshop series.
 
-### 🥊 Challenge 2: Select columns using tidyverse
+### 🥊 Challenge 2: Select Columns using Tidyverse
 
 Use the `select()` function from `tidyverse` to select three variables from the gap data frame. Assign those three variables to a new data frame. Check the dimensions of your new data frame using the `dim()` function.
 
@@ -107,7 +109,7 @@ Use the `select()` function from `tidyverse` to select three variables from the 
 
 ```
 
-## Filtering data frames
+## Filtering Data Frames
 
 If we open the `gap` data frame (click on the gap object in the Global Environment panel), we see a **Filter** button. This allows us to subset the data frame by rows. We can specify that we want to only show rows for Pakistan or only show rows in the year 1992. We can achieve the same thing by writing code.
 
@@ -193,9 +195,9 @@ data_mexico <- gap %>%
 dim(data_mexico)
 ```
 
-💡 If you have R 4.1 or higher, there is now a base R pipe operator `|>` , which works the same as `%>%` but does not need `tidyverse` to have been loaded.
+💡 **Tip:** If you have R 4.1 or higher, there is now a base R pipe operator `|>` , which works the same as `%>%` but does not need `tidyverse` to have been loaded.
 
-### 🥊 Challenge 3: Combining filter and select
+### 🥊 Challenge 3: Combining Filter and Select
 
 Start with the gap data frame. Use the `%>%` operator and the functions `select()` and `filter`. Subset the data to countries in Asia or Oceania that have a life expectancy above 60, and select the country, year, life expectancy, and GDP per capita variables. Assign your subsetted data to a new data frame called **gap_subset**.
 
@@ -218,7 +220,7 @@ mean(gap$lifeExp)
 
 ```
 
-🔔 What do you notice when you use the `mean()` and `summary()` functions on `gap$gdpPercap` ?
+🔔 **Question:** What do you notice when you use the `mean()` and `summary()` functions on `gap$gdpPercap` ?
 
 ```{r}
 # try out mean() and summary() on gdpPercap
@@ -237,9 +239,9 @@ summary(gap$gdpPercap)
 
 ```
 
-When we ran `mean(gap$gdpPercap)` it returned `NA` because it can't calculate a mean over missing values. We need to tell it to explicitly ignore the missing values and calculate the mean using the non-missing values.
+When we ran `mean(gap$gdpPercap)`, R returned `NA` because it can't calculate a mean over missing values. We need to tell it to explicitly ignore the missing values and calculate the mean using the non-missing values.
 
-📝 **Poll RFun 3-2:** Look up the documentation for `mean`. Which argument will let us ignore `NA` values? What value should we set this argument to? Answer in the zoom poll.
+📝 **Poll RFun 3-2:** Look up the documentation for `mean`. Which argument will let us ignore `NA` values? What value should we set this argument to? Answer in the Zoom poll.
 
 ```{r}
 # look up the documentation for mean
@@ -252,9 +254,9 @@ mean(gap$gdpPercap, ...) # <- edit this
 summary(gap$gdpPercap)
 ```
 
-⚠️ Some functions ignore `NA` values by default and some do not. The function documentation will tell you what the default behavior is, or you can find out with trial and error.
+⚠️ **Warning:** Some functions ignore `NA` values by default and some do not. The function documentation will tell you what the default behavior is, or you can find out with trial and error.
 
-### 🥊 Challenge 4: Filtering missing values
+### 🥊 Challenge 4: Filtering Missing Values
 
 We might want to drop the missing values from our data entirely. We can combine `filter()` and `is.na()` to remove rows that contain missing values. Edit the code below to drop all rows for which gdpPercapita is missing.
 
@@ -277,11 +279,11 @@ summary(gap_nomissing$gdpPercap)
 
 ```
 
-⚠️ When dropping missing values, it drops the entire row of data that contained those missing values. This means we lose cells that had non-missing values for other variables. Choosing whether to drop the row entirely or using functions that ignore missing values will depend on what you're trying to do in your data cleaning and analysis.
+⚠️ **Warning:** When dropping missing values, R drops the entire row of data that contained those missing values. This means we lose cells that had non-missing values for other variables. Choosing whether to drop the row entirely or using functions that ignore missing values will depend on what you're trying to do in your data cleaning and analysis.
 
-### **🎬 Reporting the missing values for all variables in our data**
+### 🎬 **Demo:**Reporting Missing Values for all Variables**
 
-The code below uses two functions from **tidyverse**, `summarize()` and `pivot_longer()`, to make a table showing the number of missing values in each variable. We learn these functions in [R Data Wrangling](https://github.com/dlab-berkeley/R-Data-Wrangling), which is a great course to take after R Fundamentals.
+The code below uses two functions from **tidyverse**, `summarize()` and `pivot_longer()`, to make a table showing the number of missing values in each variable. We learn these functions in D-Lab's [R Data Wrangling](https://github.com/dlab-berkeley/R-Data-Wrangling) workshop, which is a great course to take after R Fundamentals.
 
 ```{r}
 gap %>%
@@ -314,13 +316,13 @@ summary(gap$country)
 
 ```
 
-Instead we can use the `table()` function to print out a table of all the values that `continent` takes and how many times each value appears (it's frequency).
+Instead, we can use the `table()` function to print out a table of all the values that `continent` takes and how many times each value appears (i.e., its frequency).
 
 ```{r}
 table(gap$continent)
 ```
 
-We can also create a cross-table where we provide two variables to `table()` and it shows the counts for each cross of the two variables.
+We can also create a cross-table where we provide two variables to `table()`. It shows the counts for each cross of the two variables.
 
 ```{r}
 table(gap$continent, gap$year)
@@ -330,7 +332,7 @@ table(gap$continent, gap$year)
 
 `country` and `continent` are both **categorical** variables, which means they have a fixed and known set of possible values. For example, `continent` can be one of five values: Africa, Americas, Asia, Europe, or Oceania.
 
-⚠️ Not all character variables are categorical: a variable of people's names does not have a limited and known set of values, but it is a character variable. Likewise, not all categorical variables are characters: shoe size is a numeric variable but it has a fixed set of values, so it is a categorical variable.
+⚠️ **Warning:** Not all character variables are categorical: a variable of people's names does not have a limited and known set of values, but it is a character variable. Likewise, not all categorical variables are characters: shoe size is a numeric variable but it has a fixed set of values, so it is a categorical variable.
 
 In R, **categorical** variables are best stored as **factors** because this tells R that the variable can take one of a fixed set of values. This is helpful when performing calculations or making plots. The set of values that a factor variable can take are called **levels**. For the `continent` variable, the levels are Africa, Americas, Asia, Europe, and Oceania.
 
@@ -345,15 +347,15 @@ summary(continent_factor)
 
 ```
 
-💡 Factors are useful when it comes to making plots and tables, but we won't spend much time on them now.
+Factors are useful when it comes to making plots and tables, but we won't spend much time on them now.
 
-⚠️ We create factor versions of our `continent` variable outside of the gap data frame. To create new variable or modify existing variables in a data frame we can use the `mutate()` function from **tidyverse**. This is beyond this workshop but is covered in [R Data Wrangling](https://github.com/dlab-berkeley/R-Data-Wrangling).
+💡 **Tip:** We created factor versions of our `continent` variable outside of the gapminder data frame. To create new variable or modify existing variables in a data frame, we can use the `mutate()` function from **tidyverse**. This is beyond this workshop but is covered in [R Data Wrangling](https://github.com/dlab-berkeley/R-Data-Wrangling).
 
 ## 🎬 Next time...
 
 Selecting and filtering data are frames are key steps in telling stories from our data. Looking at summary statistics and visualization are the next steps for understanding our data and presenting it to other people.
 
-🔔 Run the chunk of code below. What do you think we are doing?
+🔔 **Question:** Run the chunk of code below. What do you think we are doing?
 
 ```{r}
 gap %>%
@@ -371,7 +373,7 @@ gap %>%
 
 ## Key Points
 
--   Use conditional statements with logical operators to filter data frames to a subset of rows
--   The pipe operator `%>%` is a way to pass output from one line of code to the next line of code
--   Different functions in R treat missing values differently - always be aware of whether you have missing data
--   We used the functions `select()`, `min()`, `mean()`, `head()`, `filter()`, `summary()`, `is.na()`, `table()` and `factor()`
+-   Use conditional statements with logical operators to filter data frames to a subset of rows.
+-   The pipe operator `%>%` is a way to pass output from one line of code to the next line of code.
+-   Different functions in R treat missing values differently - always be aware of whether you have missing data.
+-   We used the functions `select()`, `min()`, `mean()`, `head()`, `filter()`, `summary()`, `is.na()`, `table()` and `factor()`.
