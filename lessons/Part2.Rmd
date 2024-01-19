@@ -50,7 +50,7 @@ pop_mexico + 2
 
 ```
 
-### 🥊 Challenge 1: Manipulating vVectors
+### 🥊 Challenge 1: Manipulating Vectors
 
 The code above didn't permanently change the values in our population vector. Re-write the code above so that the population vector is an additional 2 (million) people in each year.
 

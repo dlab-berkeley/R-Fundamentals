@@ -27,15 +27,6 @@ Throughout this workshop series, we will use the following icons:
 
 🎬 **Demo**: Showing off something more advanced so you know what you can use R for in the future
 
-Before we get started, let's load in the `tidyverse` package that we used in Part 2. We will use this today to subset our data and to make plots!
-
-```{r}
-# if you haven't installed tidyverse before, uncomment this line 
-#install.packages("tidyverse")
-
-# if you have previously installed tidyverse, load it into the current R session
-library(tidyverse)
-```
 
 ## Tidyverse
 
