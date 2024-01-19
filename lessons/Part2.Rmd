@@ -81,10 +81,15 @@ length(pop_mexico)
 
 ```
 
-⚠️ **Warning:** Not all functions have inputs or arguments - for example, the `ls()` function doesn't require an input but still gives us an output.
+⚠️ **Warning:** Not all functions have inputs or arguments - for example, the `ls()` function doesn't require an input but still gives us an output. Similarly, not all functions print out any output - for example, `rm()`.
 
 ```{r}
+
+# no input is needed for ls()
 ls()
+
+# no input is needed and there is no output
+rm()
 
 ```
 
