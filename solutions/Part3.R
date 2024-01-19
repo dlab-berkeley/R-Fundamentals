@@ -58,7 +58,7 @@ dim(gap_subset)
 
 # fill in a conditional statement in filter to keep only rows with non-missing values of gdpPercap
 gap_nomissing <- gap %>%
-  filter(!is.na(gdpPercapita))
+  filter(!is.na(gdpPercap))
 
 # the code below subtracts the number of rows in gap_nonmiss from number of rows in gap - this is how many rows filter() dropped
 nrow(gap)-nrow(gap_nomissing)
