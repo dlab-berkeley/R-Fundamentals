@@ -21,11 +21,41 @@ mean(gap$lifeExp)
 # range of life expectancy 
 summary(gap$lifeExp)
 
-## Challenge 3: Plots ----
+
+## Challenge 3: Write a custom function ----
+# Write a function that filters the gap data set to a specific year. Then estimate the average GDP per capita in that year. Make your function so you can input a different year and the functions outputs the average GDP per capita for that year. Use the code above as a template.
+
+GDP_byyear <- function(yr){
+  
+  # function to return average GDP per capita in year yr
+  # yr = year, number
+  
+  # limit to specific year
+  gap_subset <- gap %>%
+    filter(year == yr)
+  
+  # save the mean GDP per capita for that year
+  # b/c gdpPercap has some missing values in, make sure to remove missing from mean()
+  gdp_mean <- mean(gap_subset$gdpPercap, na.rm = T)
+  
+  # return the life expectancy
+  return(paste0("The average GDP per capita in ", yr, " is ", gdp_mean))
+  
+}
+
+# what years do we have?
+unique(gap$year)
+
+# call the function for some years
+GDP_byyear(2007)
+GDP_byyear(1982)
+GDP_byyear(1957)
+
+## Challenge 4: Plots ----
 # answer in the chat 
 
 
-## Challenge 4: Create a scatter plot ----
+## Challenge 5: Create a scatter plot ----
 # Create a scatter plot that shows the relationship between lifeExp and gdpPercap. 
 # Start with a "simple" plot using geom_point(). 
 # Then think about edits you could make to the plot that might make it easier to read. 
@@ -69,32 +99,4 @@ gap %>%
 
 
 
-## Challenge 5: Write a custom function ----
-# Write a function that filters the gap data set to a specific year. Then estimate the average GDP per capita in that year. Make your function so you can input a different year and the functions outputs the average GDP per capita for that year. Use the code above as a template.
-
-GDP_byyear <- function(yr){
-  
-  # function to return average GDP per capita in year yr
-  # yr = year, number
-  
-  # limit to specific year
-  gap_subset <- gap %>%
-    filter(year == yr)
-  
-  # save the mean GDP per capita for that year
-  # b/c gdpPercap has some missing values in, make sure to remove missing from mean()
-  gdp_mean <- mean(gap_subset$gdpPercap, na.rm = T)
-  
-  # return the life expectancy
-  return(paste0("The average GDP per capita in ", yr, " is ", gdp_mean))
-  
-}
-
-# what years do we have?
-unique(gap$year)
-
-# call the function for some years
-GDP_byyear(2007)
-GDP_byyear(1982)
-GDP_byyear(1957)
 
