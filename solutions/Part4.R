@@ -82,7 +82,12 @@ gap %>%
 # more detailed plot 
 # - limit to 2007
 # - color points by continent 
-# - log the GDP per capita to make the scale easier to read
+# - log the GDP per capita to make the scale easier to read - Logging a variable is helpful if it has a 
+# wide-range or is right-skewed (where most of the data points are clustered towards the left and a few 
+# large values stretch the tail to the right). Logging a variable compresses the scale of the data, 
+# bringing the larger values closer together and stretching out the smaller values. In our case, there are 
+# lots of countries with very low GDP per capita (\<5K) and fewer as GDP per capita gets higher (\>30K).
+
 gap %>%
   filter(year == 2007) %>%
   # set the x and y axis
