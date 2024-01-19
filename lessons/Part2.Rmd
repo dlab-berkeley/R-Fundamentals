@@ -302,8 +302,8 @@ We can index **multiple** columns. This is done by providing a vector of variabl
 gap[c("pop", "year")]
 
 # we can also define the vector of names first
-variables <- c("pop" , "year", "lifeExp")
-gap[variables]
+variable_names <- c("pop" , "year", "lifeExp")
+gap[variable_names]
 ```
 
 ### 🥊 Challenge 4: Subsetting Columns
