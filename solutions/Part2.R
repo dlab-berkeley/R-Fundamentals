@@ -1,5 +1,12 @@
 ## Solutions to R Fundamentals Pilot - Part 2 of 4
 
+# set working directory to project home 
+# uncomment the following line if you haven't installed these packages already 
+#install.packages("here", "tidyverse")
+library(tidyverse)
+library(here)
+setwd(here())
+
 ## Challenge 1: Manipulating vectors ----
 #The code above didn't permanently change the values in our population vector. 
 # Re-write the code above so that the population vector is an additional 2 million people in each year.
