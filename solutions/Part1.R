@@ -1,5 +1,12 @@
 ## Solutions to R Fundamentals Pilot - Part 1 of 4
 
+# set working directory to project home 
+# uncomment the following line if you haven't installed these packages already 
+#install.packages("here", "tidyverse")
+library(tidyverse)
+library(here)
+setwd(here())
+
 ## Challenge 1 - two ways to create code chunks ----
 
 # 1: Click Insert –> Code chunk –> R

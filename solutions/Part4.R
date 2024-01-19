@@ -1,5 +1,12 @@
 ##  Solutions to R Fundamentals Pilot - Part 4 of 4
 
+# set working directory to project home 
+# uncomment the following line if you haven't installed these packages already 
+#install.packages("here", "tidyverse")
+library(tidyverse)
+library(here)
+setwd(here())
+
 ## Challenge 1: Reading in data ----
 # Load in data/gapminder.csv using the read.csv() function from earlier workshops and assign it to the object gap.
 gap <- read.csv("./data/gapminder.csv")

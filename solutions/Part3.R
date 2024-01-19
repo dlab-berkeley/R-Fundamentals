@@ -1,5 +1,12 @@
 ## Solutions to R Fundamentals Pilot - Part 3 of 4
 
+# set working directory to project home 
+# uncomment the following line if you haven't installed these packages already 
+#install.packages("here", "tidyverse")
+library(tidyverse)
+library(here)
+setwd(here())
+
 ## Challenge 1: Reading in data ----
 #In Part 2 we learned to read in a csv file and assign it to a data frame called `gap`. 
 # Lets do that again. How can you find out what variables we have in our data?
