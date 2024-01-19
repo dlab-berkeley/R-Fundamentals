@@ -45,7 +45,11 @@ Before we use functions from `tidyverse`, we need to take two steps:
 ```{r}
 # install the tidyverse package - note the name of the package needs to be in quotes
 install.packages("tidyverse")
+```
 
+⚠️ **Warning:** If you're running into issues with installing `tidyverse` the best thing to do is switch to DataHub (link in the README on [github](https://github.com/dlab-berkeley/R-Fundamentals)). All the material and packages are pre-loaded there.
+
+```{r}
 # load the package into the current R session - note the name of the package doesn't need to be in quotes (!) and you can use tab complete to see a list of installed packages
 library(tidyverse)
 
@@ -149,7 +153,7 @@ filter(gap, lifeExp > 80)
 We can also combine conditional statements using the `&` and `|` (or) operators. `&` checks both statements and returns rows that meet **both** conditions. `|` (or) checks both statements and returns rows that meet **either** conditions.
 
 ```{r}
-# return all rows in Asia with a GSP per capita above or equal to 30K
+# return all rows in Asia with a GDP per capita above or equal to 30K
 filter(gap, continent == "Asia" & gdpPercap >= 30000)
 
 # return all rows in Germany or France
