@@ -55,17 +55,19 @@ In this workshop, we will write and run code from an **R Notebook**. You can ope
 
 You can write **text** directly into a notebook, as you would a Word Document. To write **code** you need to create a code chunk. You can do this in three ways:
 
-1\. Click Insert --\> Code chunk --\> R
+1\. Code --\> Insert Chunk
 
 2\. Use the keyboard shortcut **Ctrl + Alt + I** (windows) or **Cmd + Option + I** (mac) (I = the letter "i")
 
-3\. [for newer versions of R] Type **/** (forward slash) and a drop down menu should appear. Select R Code Chunk
+3\. [if running the notebook in "Visual" rather than "Source"] Type **/** (forward slash) and a drop down menu should appear. Select R Code Chunk
 
 You can run code inside a code chunk in two ways:
 
 1.  Click the small green play button at the top right of the chunk - this will run all the code inside the chunk.
 
-2.  Use the keyboard shortcut **Ctrl + Enter** (windows) or **Cmd + Enter** (mac) - this will run the single line of code your cursor is on
+2.  Use the keyboard shortcut **Shift + Ctrl + Enter** (windows) or **Shift + Cmd + Enter** (mac) - this will run all the code inside the chunk.
+
+3.  Use the keyboard shortcut **Ctrl + Enter** (windows) or **Cmd + Enter** (mac) - this will run the single line of code your cursor is on.
 
 ```{r}
 # Inside code chunks, text lines need to be started with a # (hashtag)
@@ -148,7 +150,7 @@ You can remove variables from the global environment.
 ```{r}
 
 # remove a single variable
-rm(name)
+rm(year)
 
 # remove all variables in the global environment
 rm(list = ls())
