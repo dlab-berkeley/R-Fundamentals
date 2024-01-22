@@ -199,7 +199,11 @@ mean_lifeexp <- function(continent_name, yr){
     filter(continent == continent_name & year == yr)
 
   # save the mean life expectancy for that continent
-  lifeexp_mean <- mean(gap_subset$lifeExp)
+  lifeexp_mean <- gap_subset %>%
+    # pull put the life expectancy column into a vector
+    pull(lifeExp) %>%
+    # take the mean
+    mean()
   
   # return the life expectancy
   return(paste0("The average life expectancy in ", continent_name, " in ", yr, " is ", lifeexp_mean))
