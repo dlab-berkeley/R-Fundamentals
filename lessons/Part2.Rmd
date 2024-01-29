@@ -68,27 +68,50 @@ Beyond mathematical operations, we can apply **functions** to vectors, for examp
 length(pop_mexico)
 ```
 
-Functions are commands that take an input and return some output. They are identified by the trailing brackets. Inside the brackets you'll put:
+Functions are commands that take an **input** and return some **output**. You can tell you have a function when you see a pair of parentheses following a function name (eg. `length()`, `c()`). Inside the parentheses go inputs (also called **arguments**). Each input takes a value that we provide when calling the function. 
 
-1.  **input** - the object that the function is operating on.
+The **inputs** to the function go inside the parentheses. You might see these inputs also referred to as **arguments** or parameters. We will refer to them as **arguments**. Each argument has a name, but you might not always see the names of the arguments when a function is being called. When you call a function, you a provide a value for each argument. The function uses those values to generate its output
 
-2.  **arguments** - modifications we make to the function (the first argument is usually the input).
-
-🔔 **Tip:** What is the **input** for the `length()` function?
+To know which arguments go into a function, we look at the documentation. To call the documentation for a function type `?` then the function name. 
 
 ```{r}
+# look at documentation for length()
+?length
+
+```
+
+Under *Arguments* we see there is one argument for `length()`: `x`. `x` is the name of the argument. We always need to supply `length()` with a value for x. In our case, we will input a vector. 
+
+```{r}
+# supply pop_mexico to the input x
+length(x = pop_mexico)
+
+# we don't need to specify "x = " each time because it is the first (and in this case, only) input
 length(pop_mexico)
 
 ```
 
-⚠️ **Warning:** Not all functions have inputs or arguments - for example, the `ls()` function doesn't require an input but still gives us an output. Similarly, not all functions print out any output - for example, `rm()`.
+Some functions have **default** arguments, which means that we don't need to supply a value to those inputs/arguments because there are default values supplied by R. For example, the function `read.csv()`, which we saw in Part 1's demo, has a default value of `TRUE` for the argument `header`. We can look up what that means in the documentation. 
+
+```{r}
+# look up header under arguments 
+?read.csv
+
+# we only need to supply a value for the argument file = and we can leave the rest as the default 
+read.csv(file = "../data/gapminder.csv")
+
+```
+
+We will return to the `read.csv()` function below. 
+
+⚠️ **Warning:** Not all functions have arguments - for example, the `ls()` function doesn't require any arguments but still gives us an output. Similarly, not all functions print out any output - for example, `rm()`.
 
 ```{r}
 
-# no input is needed for ls()
+# no argument is needed for ls()
 ls()
 
-# no input is needed and there is no output
+# no argument is needed and there is no output
 rm()
 
 ```
