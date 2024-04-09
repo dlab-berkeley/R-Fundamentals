@@ -2,7 +2,12 @@
 
 [![Datahub](https://img.shields.io/badge/launch-datahub-blue)](https://dlab.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fdlab-berkeley%2FR-Fundamentals&urlpath=rstudio%2F&branch=main) [![Binder](http://mybinder.org/badge.svg)](https://mybinder.org/v2/gh/dlab-berkeley/R-Fundamentals/HEAD?urlpath=rstudio)
 
-This repository contains the materials for D-Lab's R Fundamentals workshop. No prior experience with R is required.
+This repository contains the materials for D-Lab's R Fundamentals workshop. 
+
+### Prerequisites
+No prior experience with R is required.
+
+Check D-Lab's [Learning Pathways](https://dlab-berkeley.github.io/dlab-workshops/python_path.html) to figure out which of our workshops to take!
 
 ## Workshop Goals
 
