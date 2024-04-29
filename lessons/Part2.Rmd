@@ -315,7 +315,20 @@ years[12]
 
 Because data frames are two-dimensional, we can specify the rows and the columns we want. The format is: **data.frame[rows, columns]**. By leaving either rows or columns blank, that selects all of them.
 
-To extract a single variable, we specify the variable name withing the square brackets. This returns all the rows but only one column.
+Using row and column indexing, you can extract cells, rows, or columns with their number.
+
+```{r}
+# extract the first value of the first column
+gap[1,1]
+
+# extract the entire first row
+gap[1,]
+
+# extract the entire third column
+gap[,3]
+```
+
+Typically we want to work with variable names rather than indexes (because that requires knowing which order the variables are in). To extract a single variable, we specify the variable name withing the square brackets. This returns all the rows but only one column.
 
 ```{r}
 # extract a single variable using the indexing method 
@@ -352,6 +365,12 @@ Besides subsetting columns, we can subset rows. To do this, we use **conditional
 🔔 **Question:** Run the chunk of code below. What do you think we are doing?
 
 ```{r}
+# install tidyverse package if not already installed
+#install.packages("tidyverse")
+
+# load in package
+library(tidyverse)
+
 gap %>%
   filter(year == 2007 | year == 1952) %>%
   select(gdpPercap, lifeExp, continent, year) 
