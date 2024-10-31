@@ -63,7 +63,7 @@ RStudio is a software commonly used by R practitioners to develop code in R. We 
 
 If you do not have R installed and the materials loaded on your workshop by the time it starts, we *strongly* recommend using the UC Berkeley DataHub to run the materials for these lessons. You can access the DataHub by clicking the following button:
 
-[![DataHub](https://img.shields.io/badge/launch-datahub-blue)](https://dlab.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fdlab-berkeley%2FR-Fundamentals-Pilot&urlpath=rstudio%2F&branch=main)
+[![DataHub](https://img.shields.io/badge/launch-datahub-blue)](https://dlab.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fdlab-berkeley%2FR-Fundamentals&urlpath=rstudio%2F&branch=main)
 
 Some users may have to click the link twice if the materials do not load initially.
 
@@ -71,7 +71,7 @@ The DataHub downloads this repository, along with any necessary packages, and al
 
 If you don't have a Berkeley CalNet ID, you can still run these lessons in the cloud, by clicking this button:
 
-[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/dlab-berkeley/R-Fundamentals-Pilot/HEAD?urlpath=rstudio)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/dlab-berkeley/R-Fundamentals/HEAD?urlpath=rstudio)
 
 If you are loading Binder with this repository for the first time, it may take a few minutes to set up. Binder operates similarly to the D-Lab DataHub, but on a different set of servers. By using Binder, however, you cannot save your work.
 
@@ -115,7 +115,7 @@ D-Lab works with Berkeley faculty, research staff, and students to advance data-
 
 Visit the [D-Lab homepage](https://dlab.berkeley.edu/) to learn more about us. You can view our [calendar](https://dlab.berkeley.edu/events/calendar) for upcoming events, learn about how to utilize our [consulting](https://dlab.berkeley.edu/consulting) and [data](https://dlab.berkeley.edu/data) services, and check out upcoming [workshops](https://dlab.berkeley.edu/events/workshops).
 
-# Other D-Lab [Language] Workshops
+# Other D-Lab R Workshops
 
 D-Lab offers a variety of R workshops, catered toward different levels of expertise.
 
