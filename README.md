@@ -133,5 +133,5 @@ D-Lab offers a variety of R workshops, catered toward different levels of expert
 
 # Contributors
 
-Hero Ashman
-Tom van Nuenen
+- Hero Ashman
+- Tom van Nuenen
