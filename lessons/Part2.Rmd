@@ -68,41 +68,9 @@ Beyond mathematical operations, we can apply **functions** to vectors, for examp
 length(pop_mexico)
 ```
 
-Functions are commands that take an **input** and return some **output**. You can tell you have a function when you see a pair of parentheses following a function name (eg. `length()`, `c()`). Inside the parentheses go inputs (also called **arguments**). Each input takes a value that we provide when calling the function. 
+Functions are commands that take an **input** and return some **output**. You can tell you have a function when you see a pair of parentheses following a function name (eg. `length()`, `c()`).
 
-The **inputs** to the function go inside the parentheses. You might see these inputs also referred to as **arguments** or parameters. We will refer to them as **arguments**. Each argument has a name, but you might not always see the names of the arguments when a function is being called. When you call a function, you a provide a value for each argument. The function uses those values to generate its output
-
-To know which arguments go into a function, we look at the documentation. To call the documentation for a function type `?` then the function name. 
-
-```{r}
-# look at documentation for length()
-?length
-
-```
-
-Under *Arguments* we see there is one argument for `length()`: `x`. `x` is the name of the argument. We always need to supply `length()` with a value for x. In our case, we will input a vector. 
-
-```{r}
-# supply pop_mexico to the input x
-length(x = pop_mexico)
-
-# we don't need to specify "x = " each time because it is the first (and in this case, only) input
-length(pop_mexico)
-
-```
-
-Some functions have **default** arguments, which means that we don't need to supply a value to those inputs/arguments because there are default values supplied by R. For example, the function `read.csv()`, which we saw in Part 1's demo, has a default value of `TRUE` for the argument `header`. We can look up what that means in the documentation. 
-
-```{r}
-# look up header under arguments 
-?read.csv
-
-# we only need to supply a value for the argument file = and we can leave the rest as the default 
-read.csv(file = "../data/gapminder.csv")
-
-```
-
-We will return to the `read.csv()` function below. 
+Inside the parentheses go inputs (also called **arguments**). Each argument has a name, but you might not always see the names of the arguments when a function is being called. When you call a function, you a provide a value for each argument.
 
 ⚠️ **Warning:** Not all functions have arguments - for example, the `ls()` function doesn't require any arguments but still gives us an output. Similarly, not all functions print out any output - for example, `rm()`.
 
@@ -116,37 +84,45 @@ rm()
 
 ```
 
+To know which arguments go into a function, we look at the documentation. To call the documentation for a function type `?` then the function name.
+
+```{r}
+# look at documentation for length()
+?length
+
+```
+
+Under *Arguments* we see there is one argument for `length()`: `x`. `x` is the name of the argument. We always need to supply `length()` with a value for x. In our case, we will input a vector.
+
+```{r}
+# supply pop_mexico to the input x
+length(x = pop_mexico)
+
+# we don't need to specify "x = " each time because it is the first (and in this case, only) input
+length(pop_mexico)
+
+```
+
 We can modify functions by changing the **arguments** in the function. The function `seq()` has several arguments, which we can look at on the help page.
 
 ```{r}
 # look up what the seq() functions does and what arguments it uses
 ?seq
 
-
 ```
 
-📝 **Poll RFun 2-1:** Looking at the `seq()` help page, which code is correct for creating a vector with the years 2018 to 2022? Try the code out in the poll below and answer in the Zoom poll.
+### 🥊 Challenge 2: Use the seq() function
+
+Use the function `seq()` to create a vector that goes from 2000 to 2025 in increments of 5, eg. `c(2000, 2005, 2010, ...)` . There are multiple ways to do this and you will need to consult the **Arguments** section of the documentation `?seq` in order to pick which way to do it.
 
 ```{r}
 
-# years vector using c()
-years <- c(2018, 2019, 2020, 2021, 2022)
+# look at the documentation for sequence 
+?seq
 
-# try using seq() to create the same vector as above, called years_v2
-years_v2 <- ...
+# create a vector from 2000 to 2025 in increments of 5 
 
-```
 
-```{r}
-# check that the two population vectors are the same length
-length(years)
-length(years_v2)
-```
-
-A third way to create a vector is using the `:` operator (colon operator).
-
-```{r}
-years_v3 <- c(2018:2022)
 
 ```
 
@@ -162,9 +138,7 @@ In the R language, a data frame is an object containing multiple vectors of the 
 
 Figure: diagram of a data frame showing variables as columns, observations as rows, and values as cells. Source: [Wickham, Cetinkaya-Rundel and Grolemund. 2023. R for Data Science (2e)](https://r4ds.hadley.nz/data-tidy.html#fig-tidy-structure)
 
-### 🥊 Challenge 2: Your Own Data
-
-Think of an example of data you have worked with. What are the observations (the unit of measurement)? What are the variables (the information being measured)? **Write your answer in the chat, but don't hit send until I say go...**
+🔔 **Question**: Think of an example of data you have worked with. What are the observations (the unit of measurement)? What are the variables (the information being measured)? **Write your answer in the chat, but don't hit send until I say go...**
 
 ⚠️ **Warning:** Data frames are not the only way to store multidimensional data in R - but they are the most common and easiest to work with.
 
@@ -172,7 +146,7 @@ Think of an example of data you have worked with. What are the observations (the
 
 You can create a data frame in R and fill it with values. Normally though, you **import** data and save it as a data frame. You can import many different types of files into R (eg. excel sheets, csv files, dta files). Today we will import a csv file.
 
-📝 **Poll RFun 2-2:** What file type does the data you work with usually come in?
+📝 **Poll RFun 2-1:** What file type does the data you work with usually come in?
 
 ```{r}
 # import csv file 
@@ -184,7 +158,7 @@ gap <- read.csv("gapminder.csv")
 
 When we read in data, we need to specify the **relative file path**. This means, from our **current working directory**, navigating our file structure to get to the file we want to import.
 
-Imagine the file path on your computer as the exact address to a specific room in a sprawling mansion. The mansion has multiple floors, each with a variety of rooms: bedrooms, kitchens, and libraries. To find your way to a specific room, you would start at the front entrance (the root directory), then move up staircases or down hallways (subdirectories) until you reach your destination. 
+Imagine the file path on your computer as the exact address to a specific room in a sprawling mansion. The mansion has multiple floors, each with a variety of rooms: bedrooms, kitchens, and libraries. To find your way to a specific room, you would start at the front entrance (the root directory), then move up staircases or down hallways (subdirectories) until you reach your destination.
 
 Just as you might give a friend detailed instructions like "enter the mansion, go up to the second floor, turn left, take the third door on the right," a file path provides the computer with precise directions to locate a specific file amid thousands of other files. This way, the computer knows exactly where to go to find what you're looking for.
 
@@ -214,7 +188,7 @@ head(gap)
 
 Clear the global environment (hint: if you can't remember the function to do this, you can use the broom icon). Read in the Gapminder data (it's in the Data directory) and save it to an object called **gap**.
 
-Then use the functions `head()`, `dim()`, and `View()` (note the capital V) to answer the following questions:
+Then use the functions `head()`, `dim()`, and `view()` to answer the following questions:
 
 1.  How many variables are there?
 
@@ -284,9 +258,9 @@ Overall, there are five classes of data in R:
 
 5.  **factor**: nominal or ordinal categorical type
 
-⚠️ **Warning:**  We have learned the first three classes. We will encounter **logicals** and **factors** later in the series.
+⚠️ **Warning:** We have learned the first three classes. We will encounter **logicals** and **factors** later in the series.
 
-📝 **Poll RFun 2-3**: Use the function `class()` on each of the following variables and match them with their class: `continent`, `lifeExp`, `gdpPercap`, `year`
+📝 **Poll RFun 2-2**: Use the function `class()` on each of the following variables and match them with their class: `continent`, `lifeExp`, `gdpPercap`, `year`
 
 ```{r}
 

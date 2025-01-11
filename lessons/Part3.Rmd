@@ -43,6 +43,8 @@ Before we use functions from `tidyverse`, we need to take two steps:
 💡 **Tip:** These steps are the same for every package you download in R.
 
 ```{r}
+# WARNING: If you are working on DataHub or Binder, you do not need to install tidyverse
+
 # install the tidyverse package - note the name of the package needs to be in quotes
 install.packages("tidyverse")
 ```
@@ -194,7 +196,7 @@ dim(data_mexico)
 
 ### 🥊 Challenge 3: Combining Filter and Select
 
-Start with the gap data frame. Use the `%>%` operator and the functions `select()` and `filter`. Subset the data to countries in Asia or Oceania that have a life expectancy above 60, and select the country, year, life expectancy, and GDP per capita variables. Assign your subsetted data to a new data frame called **gap_subset**.
+Start with the gap data frame. Use the `%>%` operator and the functions `select()` and `filter`. Subset the data to countries in Asia or Oceania that have a life expectancy above 60, and select the country, year, life expectancy, and GDP per capita variables. Assign your subsetted data to a new data frame called **gap_life60**.
 
 ```{r}
 
@@ -371,4 +373,4 @@ gap %>%
 -   Use conditional statements with logical operators to filter data frames to a subset of rows.
 -   The pipe operator `%>%` is a way to pass output from one line of code to the next line of code.
 -   Different functions in R treat missing values differently - always be aware of whether you have missing data.
--   We used the functions `select()`, `min()`, `mean()`, `head()`, `filter()`, `summary()`, `is.na()`, `table()` and `factor()`.
+-   We used the functions `select()`, `mean()`, `head()`, `filter()`, `summary()`, `is.na()`, `table()` and `factor()`.

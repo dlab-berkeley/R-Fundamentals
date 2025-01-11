@@ -49,8 +49,7 @@ Load in `data/gapminder.csv` using the `read.csv()` function from previous works
 
 ## Summary Statistics Review
 
-In Part 3 we used `summary()`, `table()`, and `mean()` to learn some things about our data. For example:
-CLEAN UP
+In Part 3 we used `summary()`, `table()`, and `mean()` to learn some things about our data. Let's review `mean()` and `summary()` in the challenge below. 
 
 ### 🥊 Challenge 2: Summary Statistics
 
@@ -116,7 +115,7 @@ summary(gap_ocean$lifeExp)
 
 🔔 **Question**: What do you think of this approach? Do you notice any problems that it caused?
 
-The code above was time consuming to write out, it was hard to catch errors, and its not easy to edit. What if we wanted to instead show the distribution of GDP per capita? We would have to go back and change five lines of code. 
+The code above was time consuming to write out, it was hard to catch errors (for example, on line 106 it should say `gap_europe$lifeExp`), and its not easy to edit. What if we wanted to instead show the distribution of GDP per capita? We would have to go back and change five lines of code. 
 
 Instead of copying and pasting code, we can instead put the code into a **function** and call the function whenever we want to show the distribution of life expectancy for a different continent.
 
@@ -193,17 +192,13 @@ mean_lifeexp <- function(continent_name, yr){
   # continent_name = name of continent, string
   # yr = year we want the life expectancy for, numeric
   
-  # every time we would have written the continent, we now write 'cont'
-  # limit to continent cont
+  # every time we would have written the continent, we now write 'continent_name'
+  # limit to continent == continent_name
   gap_subset <- gap %>%
     filter(continent == continent_name & year == yr)
 
   # save the mean life expectancy for that continent
-  lifeexp_mean <- gap_subset %>%
-    # pull put the life expectancy column into a vector
-    pull(lifeExp) %>%
-    # take the mean
-    mean()
+  lifeexp_mean <- mean(gap_subset$lifeExp)
   
   # return the life expectancy
   return(paste0("The average life expectancy in ", continent_name, " in ", yr, " is ", lifeexp_mean))
@@ -222,13 +217,19 @@ mean_lifeexp("Americas", 1952)
 
 ### 🥊 Challenge 3: Write a Custom Function
 
-Write a function that filters the gap data set to a specific year. Then estimate the average GDP per capita in that year. Write your function such that you can input a different year and the functions outputs the average GDP per capita for that year. Use the code above as a template.
+Write a function called `GDP_byyear` that filters the gap data set to a specific year. Then estimate the average GDP per capita in that year. Write your function such that you can input a different year and the functions outputs the average GDP per capita for that year. Use the code above as a template.
 
 💡 **Tip:** When writing functions, it is helpful to make sure the body of the code does what you want it to without throwing any errors before including it in the function. To do this, first write the code as you normally would outside of a function. Check it works, then replace any values with the arguments that you use in the function!
 
 ```{r}
 
-
+# replace the "..." with your code
+GDP_byyear <- function(...){
+  
+  ...
+  
+  return(...)
+}
 
 
 
@@ -395,7 +396,7 @@ lifeexp_plot <- function(country_name){
   # function plotting life expectancy against over time by country 
   # country_name = name of country, string
 
-  # every time we would have written the continent, we now write cont 
+  # every time we would have written the country, we now write country_name 
   p <- gap %>%
     filter(country == country_name) %>%
     ggplot(aes(x = year, y = lifeExp)) +

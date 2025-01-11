@@ -65,9 +65,9 @@ You can run code inside a code chunk in two ways:
 
 1.  Click the small green play button at the top right of the chunk - this will run all the code inside the chunk.
 
-2.  Use the keyboard shortcut **Shift + Ctrl + Enter** (windows) or **Shift + Cmd + Enter** (mac) - this will run all the code inside the chunk.
+2.  Use the keyboard shortcut **Shift + Ctrl + Enter** (windows) or **Shift + Cmd + Enter** (mac) - this will run all the code inside the chunk. Alternatively, click the "Run" button in the top right corner of the *notebook* *panel* and select "Run Current Chunk" from the dropdown list.
 
-3.  Use the keyboard shortcut **Ctrl + Enter** (windows) or **Cmd + Enter** (mac) - this will run the single line of code your cursor is on.
+3.  Use the keyboard shortcut **Ctrl + Enter** (windows) or **Cmd + Enter** (mac) - this will run the single line of code your cursor is on. Alternatively, click the "Run" button in the top right corner of the *notebook* *panel* and select "Run Selected Line(s)" from the dropdown list.
 
 ```{r}
 # Inside code chunks, text lines need to be started with a # (hashtag)
@@ -156,7 +156,7 @@ rm(year)
 rm(list = ls())
 ```
 
-⚠️ **Warning**:  You cannot undo removing a variable. You must instead re-create the variable.
+⚠️ **Warning**: You cannot undo removing a variable. You must instead re-create the variable.
 
 If you want to rename a variable, the easiest thing to do is create a variable with the new name and remove the old variable.
 
@@ -181,7 +181,7 @@ ls()
 
 ### 🥊 Challenge 3: Creating Variables from Other Variables
 
-Pick a country. Look up its population and create a variable which stores the population. Now look up the GDP (Gross Domestic Product) and create another variable which stores the GDP. 
+Pick a country. Look up its population and create a variable which stores the population. Now look up the GDP (Gross Domestic Product) and create another variable which stores the GDP.
 
 Can you use these two variables to create a third variable which stores the GDP per capita (GDP divided by population)?
 
@@ -201,7 +201,7 @@ To create a vector, you use the `c()` function, which stands for concatenate (me
 # create a vector with the approx population of Mexico for 5 years  
 c(123, 124, 125, 126, 127)
 
-# as chance would have it, Mexico's population has increased by about 1 million eac year from 2018 to 2022
+# as chance would have it, Mexico's population has increased by about 1 million each year from 2018 to 2022
 ```
 
 Vectors are assigned to variables using the same assignment operator (\<-) that we used for single value variables.
