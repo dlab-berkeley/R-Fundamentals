@@ -38,7 +38,7 @@ dim(gap_subset_v2)
 # make sure tidyverse is loaded
 library(tidyverse)
 
-gap_subset <- gap %>%
+gap_life60 <- gap %>%
   # filter to countries in Asia or Oceania
   filter(continent == "Asia" | continent == "Oceania") %>%
   # filter to contries with life expectancy above 60 
@@ -46,8 +46,8 @@ gap_subset <- gap %>%
   # select specific variables
   select(country, year, lifeExp, gdpPercap)
 
-head(gap_subset)
-dim(gap_subset)
+head(gap_life60)
+dim(gap_life60)
 
 ## Challenge 4: Filtering missing values
 # We might want to drop the missing values from our data entirely. 

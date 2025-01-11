@@ -9,7 +9,7 @@ setwd(here())
 
 ## Challenge 1: Manipulating vectors ----
 #The code above didn't permanently change the values in our population vector. 
-# Re-write the code above so that the population vector is an additional 2 million people in each year.
+#Re-write the code above so that the population vector is an additional 2 million people in each year.
 
 pop_mexico <- c(123, 124, 125, 126, 127)
 
@@ -21,7 +21,18 @@ pop_mexico
 pop_mexico <- pop_mexico + 2
 pop_mexico
 
-## Challenge 2 - answer in the chat ----
+## Challenge 2 - use the seq() function ----
+# Use the function seq() to create a vector that goes from 2000 to 2025 in increments of 5, eg. c(2000, 2005, 2010, ...) . 
+# There are multiple ways to do this. 
+
+# look at the sequence documentation
+?seq
+
+# option 1
+seq(from = 2000, to = 2025, by = 5)
+
+# option 2
+seq(from = 2000, to = 2025, length.out = 6)
 
 ## Challenge 3 - Import a csv file and explore the data ----
 #Clear the global environment (hint: if you can't remember the function to do this, you can use the broom icon). Read in the Gapminder data saved in the Data directory and save it to an object called gap.
