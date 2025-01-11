@@ -65,7 +65,7 @@ If you do not have R installed and the materials loaded on your workshop by the 
 
 [![DataHub](https://img.shields.io/badge/launch-datahub-blue)](https://dlab.datahub.berkeley.edu/hub/user-redirect/git-pull?repo=https%3A%2F%2Fgithub.com%2Fdlab-berkeley%2FR-Fundamentals&urlpath=rstudio%2F&branch=main)
 
-Some users may have to click the link twice if the materials do not load initially.
+Some users may have to click the link twice if the materials do not load initially. If you have used DataHub for another class, double check that the URL is dlab.datahub and not another department's DataHub.  
 
 The DataHub downloads this repository, along with any necessary packages, and allows you to run the materials in an RStudio instance on UC Berkeley's servers. No installation is needed from your end - you only need an internet browser and a CalNet ID to log in. By using the DataHub, you can save your work and come back to it at any time. When you want to return to your saved work, go straight to [DataHub](https://dlab.datahub.berkeley.edu), sign in, and click on the `R-Fundamentals` folder.
 
