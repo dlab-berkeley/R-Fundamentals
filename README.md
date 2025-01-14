@@ -85,6 +85,8 @@ Now that you have all the required software and materials, you need to run the c
 
 3.  Open up the file corresponding to the part of the workshop you're attending (`Part1.Rmd`, `Part2.Rmd`, `Part3.Rmd`, `Part4.Rmd`) via the Files panel in RStudio.
 
+Warning: if you're opening a .Rmd file for the first time in RStudio you may be prompted to install the `rmarkdown` package. Click install and wait for it to install (RStudio might need to re-start). 
+
 4.  Place your cursor on a given line and press `Command + Enter` (Mac) or `Control + Enter` (PC) to run an individual line of code.
 
 5.  The `solutions` folder contains the solutions to the challenge problems.
