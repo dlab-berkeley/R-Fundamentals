@@ -61,7 +61,7 @@ You can write **text** directly into a notebook, as you would a Word Document. T
 
 3\. [if running the notebook in "Visual" rather than "Source"] Type **/** (forward slash) and a drop down menu should appear. Select R Code Chunk
 
-You can run code inside a code chunk in two ways:
+You can run code inside a code chunk in three ways:
 
 1.  Click the small green play button at the top right of the chunk - this will run all the code inside the chunk.
 
@@ -74,6 +74,10 @@ You can run code inside a code chunk in two ways:
 
 # You can use R like a giant calculator! 
 2 + 3
+
+# Here's another example
+7*8 
+
 ```
 
 💡 **Tip:** Writing **comments** about your code is very important. The best practice is to write **why** you are doing something, not just **what** you are doing.
